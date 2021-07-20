@@ -1,0 +1,52 @@
+.header{
+    background-color: $colorHeader;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    height: 4.7vw;
+    width: 100vw;
+
+    h1{
+        font-family: $letra;
+        color: white;
+        padding-left: 2.2vw;
+        justify-self: center;
+        align-self: center;
+    }
+
+    nav{
+        align-content: center;
+        display: flex;
+        ul{
+            list-style: none;
+            display: flex;
+            
+            li{
+                display: flex;
+                margin-right: 2.2vw;
+                align-items: center;
+                a{
+                    height: fit-content;
+                    font-family: $letra;
+                    text-decoration: none;
+                    color: white;
+                }
+
+                input{
+                    width: 3vw;
+                    height: 1.5vw;
+                    border: none;
+                    background-color: rgb(211, 11, 11);
+                    color: white;
+                    font-family: $letra;
+                }
+
+            }
+            #linkContactos{
+                border-bottom: 3px solid white;     
+            }
+        }
+    }
+}
+

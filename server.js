@@ -2,24 +2,19 @@ require('dotenv').config();
 
 const express = require('express');
 const server = express();
+const jwt = require('jsonwebtoken');
+
+
 server.use(express.json());
+server.use(express.static('public'));
 
-
-const expressJwt = require('express-jwt');
-
-// server.use(expressJwt({
-//     secret:process.env.jwtPass, 
-//     algorithms: ['HS256']
-// }).unless({
-//     path: ['/api/login', '/api/registro']
-// }));
 
 server.listen(3000, ()=>{
     console.log("escuchando puerto " + process.env.PORT);
 });
 
-
-
 //rutas
 
-// app.use('/api/login', require('./routes/auth.routes'));
+server.use('/usuarios', require('./routes/usuario.routes'));
+server.use('/', require('./routes/auth.routes'));
+

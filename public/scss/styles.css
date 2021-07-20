@@ -1,0 +1,174 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.header {
+  background-color: #1D72C2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 4.7vw;
+  width: 100vw;
+}
+
+.header h1 {
+  font-family: "Noto Sans TC", sans-serif;
+  color: white;
+  padding-left: 2.2vw;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.header nav {
+  -ms-flex-line-pack: center;
+      align-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.header nav ul {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.header nav ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 2.2vw;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header nav ul li a {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-family: "Noto Sans TC", sans-serif;
+  text-decoration: none;
+  color: white;
+}
+
+.header nav ul li input {
+  width: 3vw;
+  height: 1.5vw;
+  border: none;
+  background-color: #d30b0b;
+  color: white;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+.header nav ul #linkContactos {
+  border-bottom: 3px solid white;
+}
+
+.contRegistro {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 6vw 37vw auto 37vw;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.contRegistro h2 {
+  font-family: "Noto Sans TC", sans-serif;
+  margin-top: 2vw;
+  font-size: 3vw;
+}
+
+.contRegistro input {
+  font-family: "Noto Sans TC", sans-serif;
+  margin-top: 1vw;
+  height: 2vw;
+  width: 20vw;
+}
+
+.contRegistro #email {
+  margin-top: 3vw;
+  padding-left: 4vw;
+}
+
+.contRegistro #password {
+  padding-left: 4vw;
+}
+
+.contRegistro #ingresar {
+  margin-top: 2.5vw;
+}
+
+.tituloSeccion {
+  padding: 2.89vw 0 0 2.2vw;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+.controlContactos {
+  padding: 1.48vw 2.2vw 0 2.2vw;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.controlContactos div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 3vw;
+}
+
+.controlContactos div .buscador {
+  width: 36.7vw;
+  height: 100%;
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 0.9vw;
+  padding-left: 2vw;
+  border: 1px solid #CCCCCC;
+}
+
+.controlContactos div .activarBusqueda {
+  width: 3vw;
+  margin-left: 0.7vw;
+  height: 100%;
+  background-color: white;
+  border: 1px solid #CCCCCC;
+}
+
+.controlContactos #agregarContacto {
+  width: 12.7vw;
+  height: 3.07vw;
+  border: none;
+  background-color: #1D72C2;
+  color: white;
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 0.9vw;
+}
+/*# sourceMappingURL=styles.css.map */

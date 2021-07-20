@@ -1,0 +1,41 @@
+.tituloSeccion{
+    padding: 2.89vw 0 0 2.2vw;
+    font-family: $letra;
+}
+
+.controlContactos{
+    padding: 1.48vw 2.2vw 0 2.2vw;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    div{
+        display: flex;
+        height: 3vw;
+        .buscador{
+            width: 36.7vw;
+            height: 100%;
+            font-family: $letra;
+            font-size: 0.9vw;
+            padding-left: 2vw;
+            border: 1px solid #CCCCCC;
+        }
+        .activarBusqueda{
+            width: 3vw;
+            margin-left: 0.7vw;
+            height: 100%;
+            background-color: white;
+            border: 1px solid #CCCCCC;
+        }
+    }
+
+    #agregarContacto{
+        width: 12.7vw;
+        height: 3.07vw;
+        border: none;
+        background-color: $colorHeader;
+        color: white;
+        font-family: $letra;
+        font-size: 0.9vw;
+    }
+}

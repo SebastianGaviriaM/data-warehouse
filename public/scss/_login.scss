@@ -1,0 +1,32 @@
+.contRegistro{
+    display: flex;
+    flex-direction: column;
+    margin: 6vw 37vw auto 37vw;
+    justify-content: center;
+    align-items: center;
+
+
+    h2{
+        font-family: $letra;
+        margin-top: 2vw;
+        font-size: 3vw;
+    }
+
+    input{
+        font-family: $letra;
+        margin-top: 1vw;
+        height: 2vw;
+        width: 20vw;
+    }
+    #email{
+        margin-top: 3vw;
+        padding-left: 4vw;
+    }
+    #password{
+        padding-left: 4vw;
+    }
+    #ingresar{
+        margin-top: 2.5vw;
+    }
+    
+}
