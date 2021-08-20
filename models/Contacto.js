@@ -5,7 +5,7 @@ let Contacto = {};
 Contacto.obtenerTodos = async() =>{
     try {
         
-        const resultado = await sequelize.query('SELECT id, nombre, apellido,  email, telefono, compania, cargo, canal_preferido FROM contactos', {type: sequelize.QueryTypes.SELECT});
+        const resultado = await sequelize.query('SELECT id, nombreContacto, apellido,  email, telefono, compania, cargo, canal_preferido, interes FROM contactos', {type: sequelize.QueryTypes.SELECT});
         return resultado;
 
     } catch (error) {
@@ -13,10 +13,10 @@ Contacto.obtenerTodos = async() =>{
     }
 }
 
-Contacto.crear = async(nombre, apellido, email, telefono, compania, cargo, canal_preferido) =>{
+Contacto.crear = async(nombreContacto, apellido, email, telefono, compania, cargo, canal_preferido, interes) =>{
     try {
         
-        const resultado = await sequelize.query('INSERT INTO contactos (nombre, apellido, email, telefono, compania, cargo, canal_preferido) VALUES (?, ?, ? ,? ,?)', {replacements:[nombre, apellido, email, telefono, compania, cargo, canal_preferido]});
+        const resultado = await sequelize.query('INSERT INTO contactos (nombreContacto, apellido, email, telefono, compania, cargo, canal_preferido, interes) VALUES (?, ?, ? ,? ,?)', {replacements:[nombreContacto, apellido, email, telefono, compania, cargo, canal_preferido, interes]});
         return resultado;
 
     } catch (error) {
@@ -24,10 +24,10 @@ Contacto.crear = async(nombre, apellido, email, telefono, compania, cargo, canal
     }
 }
 
-Contacto.actualizar = async(id, nombre, apellido, email, telefono, compania, cargo, canal_preferido) =>{
+Contacto.actualizar = async(id, nombreContacto, apellido, email, telefono, compania, cargo, canal_preferido, interes) =>{
     try {
         
-        const resultado = await sequelize.query('UPDATE Contactos SET (nombre=?, apellido=?, email=?, telefono=?, compania=?, cargo=?, canal_preferido=?) VALUES (?, ?, ? ,? ,?, ?, ?) WHERE id=?', {replacements:[nombre, apellido, email, telefono, compania, cargo, canal_preferido, id]});
+        const resultado = await sequelize.query('UPDATE Contactos SET (nombreContacto=?, apellido=?, email=?, telefono=?, compania=?, cargo=?, canal_preferido=?, interes=?) VALUES (?, ?, ? ,? ,?, ?, ?, ?) WHERE id=?', {replacements:[nombreContacto, apellido, email, telefono, compania, cargo, canal_preferido, interes, id]});
         return resultado;
 
     } catch (error) {
@@ -45,5 +45,16 @@ Contacto.borrar = async(id) =>{
         console.log(error);
     }
 }
+
+Contacto.pantallaContactos = async() =>{
+    try {
+        const resultado = await sequelize.query("SELECT contactos.*, companias.nombreCompania, paises.nombrePais, regiones.nombreRegion, canales.nombreCanal FROM contactos INNER JOIN companias ON contactos.compania = companias.id INNER JOIN ciudades ON companias.ciudad = ciudades.id INNER JOIN paises ON ciudades.pais = paises.id INNER JOIN regiones ON paises.region = regiones.id INNER JOIN canalescontactos ON canalescontactos.contacto_id = contactos.id INNER JOIN canales ON canales.id = canalescontactos.canal_id WHERE canalescontactos.preferencia = 'Canal favorito';", {type: sequelize.QueryTypes.SELECT});
+        return resultado;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 module.exports = Contacto;

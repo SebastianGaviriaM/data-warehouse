@@ -5,7 +5,7 @@ let Compania = {};
 Compania.obtenerTodos = async() =>{
     try {
         
-        const resultado = await sequelize.query('SELECT id, nombre, telefono, email, direccion, ciudad FROM companias', {type: sequelize.QueryTypes.SELECT});
+        const resultado = await sequelize.query('SELECT id, nombreCompania, telefono, email, direccion, ciudad FROM companias', {type: sequelize.QueryTypes.SELECT});
         return resultado;
 
     } catch (error) {
@@ -13,10 +13,10 @@ Compania.obtenerTodos = async() =>{
     }
 }
 
-Compania.crear = async(nombre, telefono, email, direccion, ciudad) =>{
+Compania.crear = async(nombreCompania, telefono, email, direccion, ciudad) =>{
     try {
         
-        const resultado = await sequelize.query('INSERT INTO companias (nombre, telefono, email, direccion, ciudad) VALUES (?, ?, ? ,? ,?)', {replacements:[nombre, telefono, email, direccion, ciudad]});
+        const resultado = await sequelize.query('INSERT INTO companias (nombreCompania, telefono, email, direccion, ciudad) VALUES (?, ?, ? ,? ,?)', {replacements:[nombreCompania, telefono, email, direccion, ciudad]});
         return resultado;
 
     } catch (error) {
@@ -24,10 +24,10 @@ Compania.crear = async(nombre, telefono, email, direccion, ciudad) =>{
     }
 }
 
-Compania.actualizar = async(id, nombre, telefono, email, direccion, ciudad) =>{
+Compania.actualizar = async(id, nombreCompania, telefono, email, direccion, ciudad) =>{
     try {
         
-        const resultado = await sequelize.query('UPDATE companias SET (nombre=?, telefono=?, email=?, direccion=?, ciudad=?) VALUES (?, ?, ? ,? ,?) WHERE id=?', {replacements:[nombre, telefono, email, direccion, ciudad, id]});
+        const resultado = await sequelize.query('UPDATE companias SET (nombreCompania=?, telefono=?, email=?, direccion=?, ciudad=?) VALUES (?, ?, ? ,? ,?) WHERE id=?', {replacements:[nombreCompania, telefono, email, direccion, ciudad, id]});
         return resultado;
 
     } catch (error) {
@@ -45,5 +45,17 @@ Compania.borrar = async(id) =>{
         console.log(error);
     }
 }
+
+Compania.traerNombres = async() =>{
+    try {
+        
+        const resultado = await sequelize.query('SELECT nombreCompania FROM companias', {type: sequelize.QueryTypes.SELECT});
+        return resultado;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 module.exports = Compania;

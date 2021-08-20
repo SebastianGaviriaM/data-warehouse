@@ -9,6 +9,7 @@
 
     h1{
         font-family: $letra;
+        font-size: 2vw;
         color: white;
         padding-left: 2.2vw;
         justify-self: center;
@@ -29,6 +30,7 @@
                 a{
                     height: fit-content;
                     font-family: $letra;
+                    font-size: 0.9vw;
                     text-decoration: none;
                     color: white;
                 }
@@ -40,11 +42,12 @@
                     background-color: rgb(211, 11, 11);
                     color: white;
                     font-family: $letra;
+                    font-size: 0.8vw;
                 }
 
             }
             #linkContactos{
-                border-bottom: 3px solid white;     
+                border-bottom: 0.2vw solid white;     
             }
         }
     }

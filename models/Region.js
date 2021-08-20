@@ -5,7 +5,7 @@ let Region = {};
 Region.obtenerTodos = async() =>{
     try {
         
-        const resultado = await sequelize.query('SELECT id, nombre FROM regiones', {type: sequelize.QueryTypes.SELECT});
+        const resultado = await sequelize.query('SELECT id, nombreRegion FROM regiones', {type: sequelize.QueryTypes.SELECT});
         return resultado;
 
     } catch (error) {
@@ -13,10 +13,10 @@ Region.obtenerTodos = async() =>{
     }
 }
 
-Region.crear = async(nombre) => {
+Region.crear = async(nombreRegion) => {
     try {
         
-        const resultado = await sequelize.query('INSERT INTO regiones (nombre) VALUES (?)', {replacements: [nombre]});
+        const resultado = await sequelize.query('INSERT INTO regiones (nombreRegion) VALUES (?)', {replacements: [nombreRegion]});
         return resultado;
 
     } catch (error) {
@@ -24,10 +24,9 @@ Region.crear = async(nombre) => {
     }
 }
 
-Region.actualizar = async(id, nombre) =>{
+Region.actualizar = async(id, nombreRegion) =>{
     try {
-
-        const resultado = await sequelize.query('UPDATE regiones SET nombre=? WHERE id=?', {replacements: [nombre, id]});
+        const resultado = await sequelize.query('UPDATE regiones SET nombreRegion=? WHERE id=?', {replacements: [nombreRegion, id]});
         return resultado;
     } catch (error) {
         console.log(error);

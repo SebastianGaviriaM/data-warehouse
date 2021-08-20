@@ -4,7 +4,7 @@ let Usuario = {};
 
 Usuario.obtenerTodos = async() =>{
     try {
-        const resultado = await sequelize.query('SELECT id, nombre, apellido, email, prefil FROM usuario', {type: sequelize.QueryTypes.SELECT});
+        const resultado = await sequelize.query('SELECT id, nombre, apellido, email, FROM usuario', {type: sequelize.QueryTypes.SELECT});
         return resultado;
         
     } catch (error) {
@@ -13,10 +13,10 @@ Usuario.obtenerTodos = async() =>{
     
 };
 
-Usuario.crear = async(nombre, apellido, email, perfil, passwordhash) => {
+Usuario.crear = async(nombre, apellido, email, passwordhash) => {
     try {
-        const result = await sequelize.query('INSERT INTO usuarios (nombre, apellido, email, perfil, contrasena, admin) VALUES (?, ?, ?, ?, ?, true);', {
-            replacements: [nombre, apellido, email, perfil, passwordhash]
+        const result = await sequelize.query('INSERT INTO usuarios (nombre, apellido, email, contrasena, admin) VALUES (?, ?, ?, ?, true);', {
+            replacements: [nombre, apellido, email, passwordhash]
         });
         return result;
         
@@ -25,9 +25,9 @@ Usuario.crear = async(nombre, apellido, email, perfil, passwordhash) => {
         
     }  
 };
-Usuario.actualizar = async (id, nombre, apellido, email, perfil) =>{
+Usuario.actualizar = async (id, nombre, apellido, email) =>{
     try {
-        const resultado = await sequelize.query('UPDATE usuarios SET nombre = ?, apellido = ?, email = ?, perfil = ? WHERE id = ?', {replacements:[nombre, apellido, email, perfil, id]});
+        const resultado = await sequelize.query('UPDATE usuarios SET nombre = ?, apellido = ?, email = ? WHERE id = ?', {replacements:[nombre, apellido, email,id]});
         return resultado;
         
     } catch (error) {

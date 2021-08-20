@@ -5,6 +5,15 @@
           box-sizing: border-box;
 }
 
+.letra {
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+.letraSub {
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 0.85vw;
+}
+
 .header {
   background-color: #1D72C2;
   display: -webkit-box;
@@ -23,6 +32,7 @@
 
 .header h1 {
   font-family: "Noto Sans TC", sans-serif;
+  font-size: 2vw;
   color: white;
   padding-left: 2.2vw;
   -ms-grid-column-align: center;
@@ -62,6 +72,7 @@
   height: -moz-fit-content;
   height: fit-content;
   font-family: "Noto Sans TC", sans-serif;
+  font-size: 0.9vw;
   text-decoration: none;
   color: white;
 }
@@ -73,10 +84,11 @@
   background-color: #d30b0b;
   color: white;
   font-family: "Noto Sans TC", sans-serif;
+  font-size: 0.8vw;
 }
 
 .header nav ul #linkContactos {
-  border-bottom: 3px solid white;
+  border-bottom: 0.2vw solid white;
 }
 
 .contRegistro {
@@ -87,7 +99,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 6vw 37vw auto 37vw;
+  margin: 6vw 37vw 0 37vw;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -107,6 +119,7 @@
   margin-top: 1vw;
   height: 2vw;
   width: 20vw;
+  font-size: 1vw;
 }
 
 .contRegistro #email {
@@ -125,10 +138,11 @@
 .tituloSeccion {
   padding: 2.89vw 0 0 2.2vw;
   font-family: "Noto Sans TC", sans-serif;
+  font-size: 1.5vw;
 }
 
 .controlContactos {
-  padding: 1.48vw 2.2vw 0 2.2vw;
+  padding: 1.48vw 2.2vw 3.25vw 2.2vw;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -150,8 +164,9 @@
   height: 100%;
   font-family: "Noto Sans TC", sans-serif;
   font-size: 0.9vw;
+  font-weight: 300;
   padding-left: 2vw;
-  border: 1px solid #CCCCCC;
+  border: 0.07vw solid #CCCCCC;
 }
 
 .controlContactos div .activarBusqueda {
@@ -159,7 +174,7 @@
   margin-left: 0.7vw;
   height: 100%;
   background-color: white;
-  border: 1px solid #CCCCCC;
+  border: 0.07vw solid #CCCCCC;
 }
 
 .controlContactos #agregarContacto {
@@ -170,5 +185,372 @@
   color: white;
   font-family: "Noto Sans TC", sans-serif;
   font-size: 0.9vw;
+}
+
+.seleccionActiva {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 2.086vw;
+  margin: 0 2.2vw 0;
+}
+
+.seleccionActiva .usuariosSeleccionados {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 8.5vw;
+  height: 1.756vw;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 100;
+  font-size: 0.8vw;
+  background-color: rgba(142, 199, 252, 0.5);
+  border-radius: 0.29vw;
+  color: #0683F9;
+}
+
+.seleccionActiva .btoneliminar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 10vw;
+  height: 1.756vw;
+}
+
+.seleccionActiva .btoneliminar img {
+  width: 1.2vw;
+  height: 1.2vw;
+}
+
+.seleccionActiva .btoneliminar h4 {
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 100;
+  font-size: 0.8vw;
+  color: #1D72C2;
+}
+
+.contContactos {
+  margin: 0 2.2vw 0 2.2vw;
+  border: 0.07vw solid #CCCCCC;
+  padding-top: 0.84vw;
+}
+
+.contContactos .contacto {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 4.01vw;
+}
+
+.contContactos .contactoResaltado {
+  background-color: #8EC7FC;
+}
+
+.contContactos .contactoResaltado div:last-child img {
+  display: none;
+}
+
+.contContactos .contactoInd div:last-child img {
+  display: none;
+}
+
+.contContactos .contactoInd div:last-child img:first-child {
+  display: block;
+}
+
+.contContactos .contactoInd:hover {
+  background-color: #E8E8E8;
+}
+
+.contContactos .contactoInd:hover div:last-child img {
+  display: block;
+}
+
+.contContactos .contactoInd:hover div:last-child img:first-child {
+  display: none;
+}
+
+.contContactos div div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.contContactos div div h3 {
+  font-weight: 300;
+  font-size: 1vw;
+  padding-left: 1vw;
+}
+
+.contContactos div .chkbx {
+  width: 4vw;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.contContactos div .chkbx input {
+  border: 0.01vw solid black;
+}
+
+.contContactos div .contactos {
+  width: 18.3vw;
+}
+
+.contContactos div .pais {
+  width: 10vw;
+}
+
+.contContactos div .compania {
+  width: 13.6vw;
+}
+
+.contContactos div .cargo {
+  width: 13.6vw;
+}
+
+.contContactos div .canal {
+  width: 13.6vw;
+}
+
+.contContactos div .interes {
+  width: 13.6vw;
+}
+
+.contContactos div .acciones {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.contContactos div .acciones img {
+  width: 1.2vw;
+  margin-left: 1.4vw;
+}
+
+.contContactos div .acciones .tresptos {
+  margin-left: 2.5vw;
+}
+
+.contContactos .titulos {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 4.01vw;
+  border-bottom: 0.07vw solid #CCCCCC;
+}
+
+.displayNone {
+  display: none;
+}
+
+.pop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.pop div {
+  width: 88.94vw;
+  background-color: #FFFFFF;
+}
+
+.pop div .titCrearCont {
+  height: 11.08vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1.954vw 2.27vw 0;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #1D72C2;
+}
+
+.pop div .titCrearCont h2 {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  font-family: "Noto Sans TC", sans-serif;
+  color: #FFFFFF;
+  font-size: 1.3vw;
+}
+
+.pop div .titCrearCont img {
+  width: 1.02vw;
+  height: 1.02vw;
+  color: #FFFFFF;
+}
+
+.pop div div .InfoPrincCont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  top: -4.79vw;
+  left: 1.5vw;
+  width: 85.79vw;
+  border: 0.2961vw solid #0683F9;
+  border-radius: 0.4758vw;
+  height: 9.58vw;
+}
+
+.pop div div .InfoPrincCont div {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.pop div div .infoCont {
+  position: relative;
+  top: -2.4vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.pop div div .infoCont div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding-left: 4vw;
+}
+
+.pop div div .infoCont div #selectInteres {
+  width: 5.12vw;
+}
+
+.pop div div .canales div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.pop div div .canales div div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding-left: 4vw;
+}
+
+.pop div div .canales div #agregarCanal {
+  width: 10.47vw;
+  height: 2.56vw;
+  background-color: #FFFFFF;
+  color: rgba(0, 0, 0, 0.25);
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  border-radius: 0.109vw;
+  margin-top: 1.76vw;
+  margin-left: 3vw;
+}
+
+.letraInputs {
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 100;
+  font-size: 1vw;
+}
+
+.letraInputs span {
+  color: red;
+}
+
+.tamanoInputs {
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 100;
+  font-size: 1vw;
+  margin-top: 0.3vw;
+  width: 13.9vw;
+  height: 2.56vw;
+  padding-left: 1vw;
+  border: 0.07vw solid rgba(0, 0, 0, 0.25);
+  border-radius: 0.109vw;
+}
+
+.guardarContacto {
+  height: 13.14vw;
+  padding: 8.85vw 2.19vw 2.19vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.guardarContacto input {
+  margin-left: 1.54vw;
+  padding: 0.5vw;
+  background-color: #1D72C2;
+  border: 0.01vw solid #1D72C2;
+  color: white;
+}
+
+.guardarContacto h4 {
+  color: #1D72C2;
+}
+
+.guardarContacto .letraGuardarContacto {
+  font-family: "Noto Sans TC", sans-serif;
+  font-weight: 700;
+  font-size: 1vw;
 }
 /*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,155 @@
+.seleccionActiva{
+    display: flex;
+    justify-content: space-between;
+
+    height: 2.086vw;
+    margin: 0 2.2vw 0;
+
+    .usuariosSeleccionados{
+        display: flex;
+        width: 8.5vw;
+        height: 1.756vw;
+        justify-content: center;
+        align-items: center;
+
+        font-family: $letra;
+        font-weight: 100;  
+        font-size: 0.8vw;  
+        
+        background-color: rgba(142, 199, 252, 0.5);
+        border-radius: 0.29vw;
+        color: #0683F9;
+    }
+    .btoneliminar{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 10vw;
+        height: 1.756vw;
+        img{
+            width: 1.2vw;
+            height: 1.2vw;
+        }
+        h4{
+            font-family: $letra;
+            font-weight: 100; 
+            font-size: 0.8vw;
+            color:$colorHeader;
+        }
+    }
+
+}
+
+
+
+
+.contContactos{
+    margin: 0 2.2vw 0 2.2vw;
+    border: 0.07vw solid $gris;
+    
+    padding-top: 0.84vw;
+    
+
+    .contacto{
+        display: flex;
+        height: 4.01vw;
+    }
+    .contactoResaltado{
+        background-color: #8EC7FC;
+        div:last-child{
+            img{
+                display: none;
+            }
+        }
+
+    }
+
+    .contactoInd{
+        div:last-child{
+            img{
+                display: none;
+            }
+            img:first-child{
+                display: block;
+            }
+        }
+
+    }
+
+
+    .contactoInd:hover{
+        background-color: #E8E8E8;
+        div:last-child{
+            img{
+                display: block;
+            }
+            img:first-child{
+                display: none;
+            }
+        }
+    }
+
+    div{
+        div{
+            display: flex;
+            align-items: center;
+            h3{
+                font-weight: 300;
+                font-size: 1vw;
+                padding-left: 1vw;
+            }
+        }
+        
+
+        
+        .chkbx{
+            width: 4vw;
+            justify-content: center;
+            input{
+                border: 0.01vw solid black;
+
+            }
+        }
+        .contactos{
+            width: 18.3vw;
+        }
+        .pais{
+            width: 10vw;
+        }
+        .compania{
+            width: 13.6vw;
+        }
+        .cargo{
+            width: 13.6vw;
+        }
+        .canal{
+            width: 13.6vw;
+        }
+        .interes{
+            width: 13.6vw;
+        }
+        .acciones{
+            display: flex;
+            
+            img{
+                width: 1.2vw;
+                margin-left: 1.4vw;
+            }
+            .tresptos{
+                margin-left: 2.5vw;
+            }
+            
+        }
+    }
+
+    .titulos{
+        display: flex;
+        height: 4.01vw;
+        border-bottom: 0.07vw solid $gris;
+    }
+    
+}
+
+.displayNone{
+    display: none;
+}

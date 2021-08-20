@@ -1,7 +1,7 @@
 .contRegistro{
     display: flex;
     flex-direction: column;
-    margin: 6vw 37vw auto 37vw;
+    margin: 6vw 37vw 0 37vw;
     justify-content: center;
     align-items: center;
 
@@ -17,6 +17,7 @@
         margin-top: 1vw;
         height: 2vw;
         width: 20vw;
+        font-size: 1vw;
     }
     #email{
         margin-top: 3vw;

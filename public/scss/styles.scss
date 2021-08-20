@@ -1,4 +1,6 @@
-@import "./_variables.scss";
-@import "./_header.scss";
-@import "./login";
-@import "./contactos";
+@import "./contactos/variables";
+@import "./contactos/header";
+@import "./contactos/login";
+@import "./contactos/buscadorContactos";
+@import "./contactos/contactos";
+@import "./contactos/agregarContacto";

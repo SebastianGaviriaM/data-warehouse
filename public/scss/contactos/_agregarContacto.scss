@@ -1,0 +1,155 @@
+.pop{
+    display: flex;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.75);
+
+    div{
+        width: 88.94vw;
+        background-color: #FFFFFF;
+
+        .titCrearCont{
+            height: 11.08vw;
+            display: flex;
+            padding: 1.954vw 2.27vw 0;
+
+            justify-content: space-between;
+
+            background-color: #1D72C2;
+
+            h2{
+                height: fit-content;
+                font-family: $letra;
+                color: #FFFFFF;
+                font-size: 1.3vw;
+            }
+            img{
+                width: 1.02vw;
+                height: 1.02vw;
+                color: #FFFFFF;
+            }
+        }
+        div{
+            .InfoPrincCont{
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                position: relative;
+                top: -4.79vw;
+                left: 1.5vw;
+
+                width: 85.79vw;
+
+                border: 0.2961vw solid #0683F9;
+                border-radius: 0.4758vw;
+                height: 9.58vw;
+
+                div{
+                    width: fit-content;
+                    height: fit-content;
+                }
+
+            }
+
+            .infoCont{
+                position: relative;
+                top: -2.4vw;
+                display: flex;
+
+                div{
+                    display: flex;
+                    flex-direction: column;
+                    width: fit-content;
+                    height: fit-content;
+                    padding-left: 4vw;
+                    #selectInteres{
+                        width: 5.12vw;
+                    }
+                }
+            }
+
+            .canales{
+                div{
+                    display: flex; 
+                    div{
+                        display: flex;
+                        flex-direction: column;
+                        width: fit-content;
+                        height: fit-content;
+                        padding-left: 4vw;
+                    }
+                    #agregarCanal{
+                        width: 10.47vw;
+                        height: 2.56vw;
+                        background-color: #FFFFFF;
+                        color: rgba(0,0,0,0.25);
+                        border: 2px solid rgba(0,0,0,0.25);
+                        border-radius: 0.109vw;
+
+                        margin-top: 1.76vw;
+                        margin-left: 3vw;
+                    }
+                }
+            }
+
+        }
+        
+
+
+        
+        
+    }
+}
+
+.letraInputs{ 
+    font-family: $letra;
+    font-weight: 100;
+    font-size: 1vw;
+    span{
+        color: red;
+    }
+}
+
+.tamanoInputs{
+                        
+    font-family: $letra;
+    font-weight: 100;
+    font-size: 1vw;
+
+    margin-top: 0.3vw;
+    width: 13.9vw;
+    height: 2.56vw;
+    padding-left: 1vw;
+    border: 0.07vw solid rgba(0,0,0,0.25);
+    border-radius: 0.109vw;
+}
+
+.guardarContacto{
+    height: 13.14vw;
+    padding: 8.85vw 2.19vw 2.19vw;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    input{
+        margin-left: 1.54vw;
+        padding: 0.5vw;
+        background-color: #1D72C2;
+        border: 0.01vw solid #1D72C2;
+        color: white;
+    }
+    h4{
+        color: #1D72C2;
+    }
+
+    .letraGuardarContacto{
+        font-family: $letra;
+        font-weight: 700;
+        font-size: 1vw;
+    }
+}

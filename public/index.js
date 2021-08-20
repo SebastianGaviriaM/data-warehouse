@@ -1,8 +1,13 @@
-const token = localStorage.getItem('token');
+try {
+    const token = localStorage.getItem('token');
 
-if(token){
-    location.href = 'main.html'; 
+    if(token){
+        location.href = 'main.html'; 
+    }  
+} catch (error) {
+    console.log("Token expiró");
 }
+
 
 let email = document.getElementById('email');
 let password = document.getElementById('password');

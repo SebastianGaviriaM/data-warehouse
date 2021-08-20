@@ -13,7 +13,6 @@ router.route('/login')
             type: sequelize.QueryTypes.SELECT,
             replacements: [email] 
         });
-        console.log(result);
         if(result.length > 0 && bcrypt.compareSync(contrasena, result[0].contrasena)){
             const token = jwt.sign({usuario:{id:result[0].id, nombre: result[0].nombre, email: result[0].email, admin: result[0].admin} }, process.env.jwtPass, { expiresIn: '1h' });
             res.json(token);
@@ -24,9 +23,9 @@ router.route('/login')
 
 router.route('/registro')    
     .post(async(req, res)=>{
-        const {nombre, apellido, email, perfil, contrasena} = req.body;
+        const {nombre, apellido, email,contrasena} = req.body;
         const passwordhash = bcrypt.hashSync(contrasena, parseInt(process.env.bcrypttmes));
-        Usuario.crear(nombre, apellido, email, perfil, passwordhash);
+        Usuario.crear(nombre, apellido, email,passwordhash);
 
         res.status(204).end();
     });
