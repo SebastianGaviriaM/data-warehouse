@@ -292,13 +292,6 @@ selectTodos.addEventListener('click', (e)=>{
 agregarContacto.addEventListener('click', ()=>{
     pop.classList.remove('displayNone');
     pop.classList.add('pop');
-
-    inputs = pop.firstElementChild.lastElementChild.firstElementChild.children;
-
-    for (let index = 0; index < inputs.length; index++) {
-        const element = inputs[index];
-        element.lastElementChild.value = "";       
-    }
 })
 
 cerrarCreacion.addEventListener('click', ()=>{
