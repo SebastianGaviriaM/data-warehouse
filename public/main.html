@@ -105,10 +105,10 @@
 
 
                 <div class="InfoPrincCont">
-                    <div><h3 class="letraInputs">Nombre<span>*</span></h3><input type="text" class="tamanoInputs"></div>
-                    <div><h3 class="letraInputs">Apellido<span>*</span></h3><input type="text" class="tamanoInputs"></div>
-                    <div><h3 class="letraInputs">Cargo<span>*</span></h3><input type="text" class="tamanoInputs"></div>
-                    <div><h3 class="letraInputs">Email<span>*</span></h3><input type="text" class="tamanoInputs"></div>
+                    <div><h3 class="letraInputs">Nombre<span>*</span></h3><input type="text" class="tamanoInputs" id="nombreNuevoContacto"></div>
+                    <div><h3 class="letraInputs">Apellido<span>*</span></h3><input type="text" class="tamanoInputs" id="apellidoNuevoContacto"></div>
+                    <div><h3 class="letraInputs">Cargo<span>*</span></h3><input type="text" class="tamanoInputs" id="cargoNuevoContacto"></div>
+                    <div><h3 class="letraInputs">Email<span>*</span></h3><input type="text" class="tamanoInputs" id="emailNuevoContacto"></div>
                     <div>
                         <h3 class="letraInputs">Compañia<span>*</span></h3>
                         <select name="selectCompania" id="selectCompania" class="tamanoInputs">
@@ -121,7 +121,7 @@
                     <div><h3 class="letraInputs">Región<span>*</span></h3><select name="Regiones" id="selectRegion" class="tamanoInputs"><option value=""></option></select></div>
                     <div><h3 class="letraInputs">País<span>*</span></h3><select name="Paises" id="selectPais" class="tamanoInputs"><option value=""></option></select></div>
                     <div><h3 class="letraInputs">Ciudad<span>*</span></h3><select name="Ciudades" id="selectCiudad" class="tamanoInputs"><option value=""></option></select></div>
-                    <div><h3 class="letraInputs">Dirección<span>*</span></h3><input type="text" class="tamanoInputs"></div>
+                    <div><h3 class="letraInputs">Dirección<span>*</span></h3><input type="text" class="tamanoInputs" id="direccionNuevoContacto"></div>
                     <div>
                         <h3 class="letraInputs" >Interés<span>*</span></h3>
                         <select name="interes" id="selectInteres" class="tamanoInputs">
@@ -134,19 +134,54 @@
                     </div>
                 </div>
 
-                <div class="canales">
+                <div class="canales" id="contCanales">
                     <div>
-                        <div><h3 class="letraInputs">Canal de contacto</h3><select name="Regiones" id="selectCanal" class="tamanoInputs"><option value=""></option></select></div>
-                        <div><h3 class="letraInputs">Cuenta de usuario</h3><input type="text" class="tamanoInputs"></div>
+                        <div><h3 class="letraInputs">Canal de contacto</h3><select name="Canales" class="tamanoInputs selectCanal"><option value=""></option></select></div>
+                        <div><h3 class="letraInputs">Cuenta de usuario</h3><input type="text" class="tamanoInputs cuentaCanal"></div>
                         <div><h3 class="letraInputs">Preferencias</h3>
-                            <select name="Ciudades" id="selectCiudad" class="tamanoInputs">
+                            <select name="Ciudades" id="selectCiudad" class="tamanoInputs preferenciaCanal">
                                 <option value=""></option>
                                 <option value="Sin preferencia" class="letraInputs">Sin preferencia</option>
                                 <option value="Canal favorito" class="letraInputs">Canal favorito</option>
                                 <option value="No molestar" class="letraInputs">No molestar</option>
                             </select>
                         </div>
-                        <input type="button" value="Agregar canal" id="agregarCanal" class="letraInputs">
+                    </div>
+                    <div>
+                        <div><h3 class="letraInputs">Canal de contacto</h3><select name="Canales" class="tamanoInputs selectCanal"><option value=""></option></select></div>
+                        <div><h3 class="letraInputs">Cuenta de usuario</h3><input type="text" class="tamanoInputs cuentaCanal"></div>
+                        <div><h3 class="letraInputs">Preferencias</h3>
+                            <select name="Ciudades" id="selectCiudad" class="tamanoInputs preferenciaCanal">
+                                <option value=""></option>
+                                <option value="Sin preferencia" class="letraInputs">Sin preferencia</option>
+                                <option value="Canal favorito" class="letraInputs">Canal favorito</option>
+                                <option value="No molestar" class="letraInputs">No molestar</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div><h3 class="letraInputs">Canal de contacto</h3><select name="Canales" class="tamanoInputs selectCanal"><option value=""></option></select></div>
+                        <div><h3 class="letraInputs">Cuenta de usuario</h3><input type="text" class="tamanoInputs cuentaCanal"></div>
+                        <div><h3 class="letraInputs">Preferencias</h3>
+                            <select name="Ciudades" id="selectCiudad" class="tamanoInputs preferenciaCanal">
+                                <option value=""></option>
+                                <option value="Sin preferencia" class="letraInputs">Sin preferencia</option>
+                                <option value="Canal favorito" class="letraInputs">Canal favorito</option>
+                                <option value="No molestar" class="letraInputs">No molestar</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <div><h3 class="letraInputs">Canal de contacto</h3><select name="Canales" class="tamanoInputs selectCanal"><option value=""></option></select></div>
+                        <div><h3 class="letraInputs">Cuenta de usuario</h3><input type="text" class="tamanoInputs cuentaCanal"></div>
+                        <div><h3 class="letraInputs">Preferencias</h3>
+                            <select name="Ciudades" id="selectCiudad" class="tamanoInputs preferenciaCanal">
+                                <option value=""></option>
+                                <option value="Sin preferencia" class="letraInputs">Sin preferencia</option>
+                                <option value="Canal favorito" class="letraInputs">Canal favorito</option>
+                                <option value="No molestar" class="letraInputs">No molestar</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -155,8 +190,8 @@
 
             
             <div class="guardarContacto">
-                <h4 class="letraGuardarContacto">cancelar</h4>
-                <input type="button" value="Guardar contacto" class="letraGuardarContacto">
+                <h4 class="letraGuardarContacto" id="cancelarAgregarContacto">cancelar</h4>
+                <input type="button" value="Guardar contacto" class="letraGuardarContacto" id="guardarContacto">
             </div>
             
 

@@ -4,9 +4,8 @@
     top: 0;
     height: 100%;
     width: 100%;
-
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     background-color: rgba(0,0,0,0.75);
 
     div{
@@ -58,7 +57,7 @@
 
             .infoCont{
                 position: relative;
-                top: -2.4vw;
+                top: -3.4vw;
                 display: flex;
 
                 div{
@@ -74,6 +73,8 @@
             }
 
             .canales{
+                position: relative;
+                top: -1.4vw;
                 div{
                     display: flex; 
                     div{
@@ -130,8 +131,7 @@
 }
 
 .guardarContacto{
-    height: 13.14vw;
-    padding: 8.85vw 2.19vw 2.19vw;
+    padding: 0 2.19vw 2.19vw;
 
     display: flex;
     justify-content: flex-end;

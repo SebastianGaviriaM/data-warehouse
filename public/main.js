@@ -1,5 +1,6 @@
 //Verificar Token de sesión
 
+
 const token = localStorage.getItem('token');
 
 if(!token){
@@ -35,11 +36,31 @@ let seleccionActiva = document.getElementById('seleccionActiva');
 let agregarContacto = document.getElementById('agregarContacto');
 let cerrarCreacion = document.getElementById('cerrarCreacion');
 let pop = document.getElementById('pop');
+
+
+
+
+let nombreNuevoContacto = document.getElementById('nombreNuevoContacto');
+let apellidoNuevoContacto = document.getElementById('apellidoNuevoContacto');
+let emailNuevoContacto = document.getElementById('emailNuevoContacto');
+let cargoNuevoContacto = document.getElementById('cargoNuevoContacto');
+let direccionNuevoContacto = document.getElementById('direccionNuevoContacto');
+
+
 let selectCompania = document.getElementById('selectCompania');
 let selectRegion = document.getElementById('selectRegion');
 let selectPais = document.getElementById('selectPais');
 let selectCiudad = document.getElementById('selectCiudad');
-let selectCanal = document.getElementById('selectCanal');
+let selectCanal = document.getElementsByClassName('selectCanal');
+let cuentasCanal = document.getElementsByClassName('cuentaCanal');
+let preferenciaCanal = document.getElementsByClassName('preferenciaCanal');
+ 
+let cancelarAgregarContacto = document.getElementById('cancelarAgregarContacto');
+let guardarContacto = document.getElementById('guardarContacto');
+let selectInteres = document.getElementById('selectInteres');
+
+let contCanales = document.getElementById('contCanales');
+let agregarCanal = document.getElementById('agregarCanal');
 
 listaElim = [];
 
@@ -124,9 +145,9 @@ const obtenerPaisesPorRegion = async(nombreRegion)=>{
     }  
 }
 
-const obtenerCiudadesPorPais = async(nombrePais)=>{
+const obtenerCiudadesPorPais = async(nombreRegion)=>{
     try {
-        const respuesta = await fetch(`/ciudades/nombrePais?pais=${nombrePais}`, {
+        const respuesta = await fetch(`/ciudades/nombrePais?pais=${nombreRegion}`, {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + token
@@ -167,9 +188,6 @@ const obtenerCanales = async()=>{
 
 
 
-
-
-
 //Pagina general
 
 
@@ -197,7 +215,6 @@ const colocarContactos = async() =>{
     try{
         const contactos = await obtenerPantallaContactos();
         contContactos.innerHTML = "";
-
         contactos.forEach(element => {
             contContactos.innerHTML += 
                 `<div class="contacto contactoInd" >
@@ -289,15 +306,46 @@ selectTodos.addEventListener('click', (e)=>{
 
 // Agregar contactos
 
+const reiniciarNuevoContacto = async ()=>{
+    nombreNuevoContacto.value = "";
+    apellidoNuevoContacto.value = "";
+    emailNuevoContacto.value = "";
+    cargoNuevoContacto.value = "";
+    direccionNuevoContacto.value = "";
+    selectCompania.selectedIndex = 0;
+    selectRegion.selectedIndex = 0;
+    selectInteres.selectedIndex = 0;
+    selectPais.innerHTML = '<option value=""></option>';
+    selectCiudad.innerHTML = '<option value=""></option>';
+    
+    for (let index = 0; index < contCanales.children.length; index++) {
+        const element = contCanales.children[index].children;
+        element[0].lastElementChild.selectedIndex = 0;
+        element[1].lastElementChild.value = "";
+        element[2].lastElementChild.selectedIndex = 0;
+    }
+}
+
+
+
 agregarContacto.addEventListener('click', ()=>{
     pop.classList.remove('displayNone');
     pop.classList.add('pop');
-})
+
+});
 
 cerrarCreacion.addEventListener('click', ()=>{
     pop.classList.add('displayNone');
     pop.classList.remove('pop'); 
-})
+});
+
+cancelarAgregarContacto.addEventListener('click', ()=>{
+    pop.classList.add('displayNone');
+    pop.classList.remove('pop');
+    reiniciarNuevoContacto();
+});
+
+
 
 
 //Regiones, paises, ciudades , companias, canales
@@ -308,7 +356,7 @@ const colocarNombresCiudades = async() =>{
     selectCiudad.innerHTML = '<option value=""></option>';
 
     ciudades.forEach(element =>{
-        selectCiudad.innerHTML += `<option value="${element.nombreCiudad}" class="letraInputs">${element.nombreCiudad}</option>`;
+        selectCiudad.innerHTML += `<option value="${element.id}" class="letraInputs">${element.nombreCiudad}</option>`;
     })
 }
 
@@ -319,7 +367,7 @@ const colocarNombresPaises = async() =>{
     selectCiudad.innerHTML = '<option value=""></option>';
 
     paises.forEach(element =>{
-        selectPais.innerHTML += `<option value="${element.nombrePais}" class="letraInputs ">${element.nombrePais}</option>`;
+        selectPais.innerHTML += `<option value="${element.id}" class="letraInputs ">${element.nombrePais}</option>`;
     });
 
     selectPais.addEventListener('change', colocarNombresCiudades);
@@ -329,7 +377,7 @@ const colocarRegiones = async() =>{
     const regiones = await obtenerRegiones();
 
     regiones.forEach(element =>{
-        selectRegion.innerHTML += `<option value="${element.nombreRegion}" class="letraInputs ">${element.nombreRegion}</option>`;
+        selectRegion.innerHTML += `<option value="${element.id}" class="letraInputs ">${element.nombreRegion}</option>`;
     });
 
     selectRegion.addEventListener('change', colocarNombresPaises);
@@ -341,21 +389,72 @@ const colocarNombresCompanias = async ()=>{
     const companias = await obtenerNombresCompanias();
 
     companias.forEach(element=>{
-        selectCompania.innerHTML += `<option value="${element.nombreCompania}" class="letraInputs ">${element.nombreCompania}</option>`;
+        selectCompania.innerHTML += `<option value="${element.id}" class="letraInputs ">${element.nombreCompania}</option>`;
     })
 }
 
 
 const colocarCanales = async ()=>{
     const Canales = await obtenerCanales();
+    
+    for (let index = 0; selectCanal < selectCanal.length; index++) {
+        const element = selectCanal[index];
+        element.innerHTML = '<option value=""></option>';
+    }
 
     Canales.forEach(element=>{
-        selectCanal.innerHTML += `<option value="${element.nombreCanal}" class="letraInputs ">${element.nombreCanal}</option>`;
+
+        for (let index = 0; index < selectCanal.length; index++) {
+            const element2 = selectCanal[index];
+            element2.innerHTML +=`<option value="${element.id}" class="letraInputs ">${element.nombreCanal}</option>`;
+        }
+        
     })
 }
+
 
 colocarCanales();
 colocarRegiones();
 colocarNombresCompanias();
 
 
+guardarContacto.addEventListener('click', () =>{
+
+    listaCanales = [];
+    listaCuentas = [];
+    listaPreferencias = [];
+    for (let index = 0; index < selectCanal.length; index++) {
+
+        if(selectCanal[index].value === ""){
+            continue;
+        }
+        listaCanales.push(selectCanal[index].value);
+        listaCuentas.push(cuentasCanal[index].value);
+        listaPreferencias.push(preferenciaCanal[index].value);
+
+    }
+
+    if(listaCuentas.includes("")){
+        console.log("Debes escribir la cuenta de todos tus canales");
+    }
+
+    else if(listaPreferencias.filter(pref => pref=="Canal favorito").length>1){
+        console.log("Solo puede haber un canal favorito");
+    }
+
+    else if(listaPreferencias.filter(pref => pref=="Canal favorito").length==0){
+        console.log("Debes tener al menos un canal favorito");
+    }
+
+    else if(listaPreferencias.includes("")){
+        console.log("Debes escoger la preferencia que");
+    }
+    else if(nombreNuevoContacto.value=="" || apellidoNuevoContacto.value=="" || emailNuevoContacto.value=="" || cargoNuevoContacto.value=="" || direccionNuevoContacto.value=="" || selectCiudad.value=="" || selectPais.value=="" || selectRegion.value=="" || selectCompania.value=="" || selectInteres.value ==""){
+        console.log("Llena todo, cara de verga");
+    }
+
+    else{
+        console.log("Lo logramos, banda");
+    }
+
+}); 

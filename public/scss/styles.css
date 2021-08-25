@@ -369,12 +369,12 @@
   top: 0;
   height: 100%;
   width: 100%;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   background-color: rgba(0, 0, 0, 0.75);
 }
 
@@ -439,7 +439,7 @@
 
 .pop div div .infoCont {
   position: relative;
-  top: -2.4vw;
+  top: -3.4vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -464,6 +464,11 @@
 
 .pop div div .infoCont div #selectInteres {
   width: 5.12vw;
+}
+
+.pop div div .canales {
+  position: relative;
+  top: -1.4vw;
 }
 
 .pop div div .canales div {
@@ -523,8 +528,7 @@
 }
 
 .guardarContacto {
-  height: 13.14vw;
-  padding: 8.85vw 2.19vw 2.19vw;
+  padding: 0 2.19vw 2.19vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

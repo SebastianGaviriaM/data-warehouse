@@ -48,7 +48,7 @@ Pais.borrar = async(id) => {
 Pais.obtenerPorRegion = async(region) =>{
     try {
         
-        const resultado = await sequelize.query('SELECT paises.nombrePais FROM paises INNER JOIN regiones ON paises.region = regiones.id WHERE regiones.nombreRegion = ?', {replacements:[region], type: sequelize.QueryTypes.SELECT});
+        const resultado = await sequelize.query('SELECT paises.nombrePais, paises.id FROM paises INNER JOIN regiones ON paises.region = regiones.id WHERE regiones.id = ?', {replacements:[parseInt(region)], type: sequelize.QueryTypes.SELECT});
         return resultado;
 
     } catch (error) {

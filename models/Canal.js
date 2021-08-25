@@ -3,9 +3,8 @@ const sequelize = require('../conexion');
 let Canal = {};
 
 Canal.obtenerTodos = async() =>{
-    try {
-        
-        const resultado = await sequelize.query('SELECT nombreCanal FROM canales', {type: sequelize.QueryTypes.SELECT});
+    try {  
+        const resultado = await sequelize.query('SELECT nombreCanal, id FROM canales', {type: sequelize.QueryTypes.SELECT});
         return resultado;
 
     } catch (error) {
@@ -16,7 +15,7 @@ Canal.obtenerTodos = async() =>{
 Canal.crear = async(nombreCanal) =>{
     try {
         
-        const resultado = await sequelize.query('INSERT INTO contactos (nombreCanal) VALUES (?)', {replacements:[nombreCanal]});
+        const resultado = await sequelize.query('INSERT INTO canales (nombreCanal) VALUES (?)', {replacements:[nombreCanal]});
         return resultado;
 
     } catch (error) {
@@ -39,6 +38,17 @@ Canal.borrar = async(id) =>{
     try {
         
         const resultado = await sequelize.query('DELETE FROM canales WHERE id=?', {replacements:[id]});
+        return resultado;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+Canal.crearDetalles = async(contacto, canal, preferencia, cuenta) =>{
+    try {
+        
+        const resultado = await sequelize.query('INSERT INTO canalescontactos (contacto_id, canal_id, preferencia, cuenta) VALUES (?, ?, ?, ?)', {replacements:[contacto, canal, preferencia, cuenta]});
         return resultado;
 
     } catch (error) {

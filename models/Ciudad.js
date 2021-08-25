@@ -48,7 +48,7 @@ Ciudad.borrar = async(id) => {
 Ciudad.obtenerPorPais = async(pais) =>{
     try {
         
-        const resultado = await sequelize.query('SELECT ciudades.nombreCiudad FROM ciudades INNER JOIN paises ON ciudades.pais = paises.id WHERE paises.nombrePais = ?', {replacements:[pais], type: sequelize.QueryTypes.SELECT});
+        const resultado = await sequelize.query('SELECT ciudades.nombreCiudad, ciudades.id FROM ciudades INNER JOIN paises ON ciudades.pais = paises.id WHERE paises.id = ?', {replacements:[parseInt(pais)], type: sequelize.QueryTypes.SELECT});
         return resultado;
 
     } catch (error) {

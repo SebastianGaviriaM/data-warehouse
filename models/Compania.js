@@ -49,7 +49,7 @@ Compania.borrar = async(id) =>{
 Compania.traerNombres = async() =>{
     try {
         
-        const resultado = await sequelize.query('SELECT nombreCompania FROM companias', {type: sequelize.QueryTypes.SELECT});
+        const resultado = await sequelize.query('SELECT nombreCompania, id FROM companias', {type: sequelize.QueryTypes.SELECT});
         return resultado;
 
     } catch (error) {
