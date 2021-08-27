@@ -15,18 +15,9 @@ router.route('/')
     })
     .post(async(req, res) =>{
         
-        const {nombreContacto, apellido, email, telefono, compania, cargo, interes, ciudad, canales, preferenciasCanales, cuentaCanal} = req.body;
-        const result = await Contacto.crear(nombreContacto, apellido, email, telefono, compania, cargo, interes, ciudad);
-
-        console.log(result[0]);
-        for (let index = 0; index < canales.length; index++) {
-            Canal.crearDetalles(result[0], canales[index], preferenciasCanales[index], cuentaCanal[index]);
-        }
-
-        res.json({
-            status:200,
-            respuesta: "Pedido creado"
-        });
+        const {nombreContacto, apellido, email, compania, cargo, interes, ciudad, canales, preferenciasCanales, cuentaCanal} = req.body;
+        const result = await Contacto.crear(nombreContacto, apellido, email, compania, cargo, interes, ciudad);
+        res.json(result);
     })
 
 

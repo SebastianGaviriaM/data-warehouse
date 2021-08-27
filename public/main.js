@@ -62,6 +62,8 @@ let selectInteres = document.getElementById('selectInteres');
 let contCanales = document.getElementById('contCanales');
 let agregarCanal = document.getElementById('agregarCanal');
 
+let popAdvertencias = document.getElementById('popAdvertencias');
+
 listaElim = [];
 
 
@@ -176,6 +178,55 @@ const obtenerCanales = async()=>{
     }  
 }
 
+const enviarNuevoContacto = async()=>{
+    try {
+        const respuesta = await fetch('/contactos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                nombreContacto: nombreNuevoContacto.value,
+                apellido: apellidoNuevoContacto.value,
+                email: emailNuevoContacto.value,
+                compania: selectCompania.value,
+                cargo: cargoNuevoContacto.value,
+                interes: selectInteres.value,
+                ciudad: selectCiudad.value
+            })
+        });
+        const json = await respuesta.json();
+        console.log(json);
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+
+const enviarDetalle = async(contactoAct, canalAct, preferenciaAct, cuentaAct)=>{
+    try {
+        const respuesta = await fetch('/canales', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                contacto: contactoAct,
+                canal: canalAct,
+                preferencia: preferenciaAct,
+                cuenta: cuentaAct
+            })
+        });
+
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+
+
+
 
 
 
@@ -230,7 +281,6 @@ const colocarContactos = async() =>{
                     <div class="acciones letra"><img src="./imgs/menu.png" alt="menu" class="tresptos"><img src="./imgs/editar.png" alt="editar" class="displayNone"><img src="./imgs/eliminar.png" alt="eliminar" class="displayNone"></div>
                 </div>`;
         });
-
         for (let index = 0; index < contContactos.children.length; index++) {
 
             let nodo = contContactos.children[index];
@@ -352,25 +402,48 @@ cancelarAgregarContacto.addEventListener('click', ()=>{
 
 
 const colocarNombresCiudades = async() =>{
-    const ciudades = await obtenerCiudadesPorPais(selectPais.value);
-    selectCiudad.innerHTML = '<option value=""></option>';
+    if(!selectPais.value==""){
 
-    ciudades.forEach(element =>{
-        selectCiudad.innerHTML += `<option value="${element.id}" class="letraInputs">${element.nombreCiudad}</option>`;
-    })
+
+        const ciudades = await obtenerCiudadesPorPais(selectPais.value);
+        selectCiudad.innerHTML = '<option value=""></option>';
+    
+        ciudades.forEach(element =>{
+            selectCiudad.innerHTML += `<option value="${element.id}" class="letraInputs">${element.nombreCiudad}</option>`;
+        });
+
+
+    }
+    else{
+
+        selectCiudad.innerHTML = '<option value=""></option>';
+
+    }
 }
 
 
 const colocarNombresPaises = async() =>{
-    const paises = await obtenerPaisesPorRegion(selectRegion.value);
-    selectPais.innerHTML = '<option value=""></option>';
-    selectCiudad.innerHTML = '<option value=""></option>';
+    if (!selectRegion.value=="") {
 
-    paises.forEach(element =>{
-        selectPais.innerHTML += `<option value="${element.id}" class="letraInputs ">${element.nombrePais}</option>`;
-    });
 
-    selectPais.addEventListener('change', colocarNombresCiudades);
+        const paises = await obtenerPaisesPorRegion(selectRegion.value);
+        selectPais.innerHTML = '<option value=""></option>';
+        selectCiudad.innerHTML = '<option value=""></option>';
+
+        paises.forEach(element =>{
+            selectPais.innerHTML += `<option value="${element.id}" class="letraInputs ">${element.nombrePais}</option>`;
+        });
+    
+        selectPais.addEventListener('change', colocarNombresCiudades);   
+
+
+    }
+    else{
+
+        selectPais.innerHTML = '<option value=""></option>';
+        selectCiudad.innerHTML = '<option value=""></option>';
+
+    }
 }
 
 const colocarRegiones = async() =>{
@@ -418,6 +491,16 @@ colocarRegiones();
 colocarNombresCompanias();
 
 
+function advertenciasCrear(mensaje) {
+    popAdvertencias.classList.remove('displayNone');
+    popAdvertencias.classList.add('popAdvertencias');
+    popAdvertencias.firstElementChild.firstElementChild.innerHTML = mensaje;
+
+    let ok = popAdvertencias.firstElementChild.lastElementChild;
+
+    ok.addEventListener('click', ()=>{popAdvertencias.classList.add('displayNone');popAdvertencias.classList.remove('popAdvertencias');})
+}
+
 guardarContacto.addEventListener('click', () =>{
 
     listaCanales = [];
@@ -434,27 +517,52 @@ guardarContacto.addEventListener('click', () =>{
 
     }
 
-    if(listaCuentas.includes("")){
-        console.log("Debes escribir la cuenta de todos tus canales");
+    if(nombreNuevoContacto.value=="" || apellidoNuevoContacto.value=="" || emailNuevoContacto.value=="" || cargoNuevoContacto.value=="" || direccionNuevoContacto.value=="" || selectCiudad.value=="" || selectPais.value=="" || selectRegion.value=="" || selectCompania.value=="" || selectInteres.value ==""){
+        advertenciasCrear("Debes llenar todos los espacion con asterisco")
     }
 
+    
+
     else if(listaPreferencias.filter(pref => pref=="Canal favorito").length>1){
-        console.log("Solo puede haber un canal favorito");
+        advertenciasCrear("Solo puede haber un canal favorito");
     }
 
     else if(listaPreferencias.filter(pref => pref=="Canal favorito").length==0){
-        console.log("Debes tener al menos un canal favorito");
+        advertenciasCrear("Debes tener al menos un canal favorito");
     }
 
     else if(listaPreferencias.includes("")){
-        console.log("Debes escoger la preferencia que");
+        advertenciasCrear("Debes escoger la preferencia de cada canal");
     }
-    else if(nombreNuevoContacto.value=="" || apellidoNuevoContacto.value=="" || emailNuevoContacto.value=="" || cargoNuevoContacto.value=="" || direccionNuevoContacto.value=="" || selectCiudad.value=="" || selectPais.value=="" || selectRegion.value=="" || selectCompania.value=="" || selectInteres.value ==""){
-        console.log("Llena todo, cara de verga");
+    else if(listaCuentas.includes("")){
+        advertenciasCrear("Debes escribir la cuenta de todos tus canales");
     }
 
     else{
-        console.log("Lo logramos, banda");
+        const creacionContactoNuevo = async()=>{
+            let idNuevo = await enviarNuevoContacto();
+            console.log(idNuevo);
+            for (let index = 0; index < listaCanales.length; index++) {
+                await enviarDetalle(idNuevo[0], listaCanales[index], listaPreferencias[index], listaCuentas[index]);
+            }
+            
+        }
+        
+        creacionContactoNuevo();
+        colocarContactos();
+        location.reload();
     }
 
 }); 
+
+
+
+
+
+
+
+
+
+
+
+

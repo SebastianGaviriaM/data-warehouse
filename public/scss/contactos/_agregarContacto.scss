@@ -153,3 +153,37 @@
         font-size: 1vw;
     }
 }
+
+
+
+.popAdvertencias{  
+    display: flex;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.75);
+    div{
+        background-color: #FFFFFF;
+        width: 25vw;
+        height: 12vw;
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        justify-content: space-evenly;
+
+        border: 0.2961vw solid #0683F9;
+        p{
+            padding: 2vw;
+        }
+        input{
+            color:#FFFFFF;
+            width: 4vw;
+            height: 2vw;
+            background-color: #0683F9;
+            border: none;
+        }
+    }
+}

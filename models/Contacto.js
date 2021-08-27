@@ -13,10 +13,10 @@ Contacto.obtenerTodos = async() =>{
     }
 }
 
-Contacto.crear = async(nombreContacto, apellido, email, telefono, compania, cargo, interes, ciudad) =>{
+Contacto.crear = async(nombreContacto, apellido, email, compania, cargo, interes, ciudad) =>{
     try {
         
-        const resultado = await sequelize.query('INSERT INTO contactos (nombreContacto, apellido, email, telefono, compania, cargo, interes, ciudad) VALUES (?, ?, ? ,? ,?, ?, ?, ?)', {replacements:[nombreContacto, apellido, email, telefono, compania, cargo, interes, ciudad]});
+        const resultado = await sequelize.query('INSERT INTO contactos (nombreContacto, apellido, email, compania, cargo, interes, ciudad) VALUES (?, ?, ? ,?, ?, ?, ?)', {replacements:[nombreContacto, apellido, email, compania, cargo, interes, ciudad]});
         return resultado;
 
     } catch (error) {
