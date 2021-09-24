@@ -13,6 +13,19 @@ Pais.obtenerTodos = async() =>{
     }
 }
 
+Pais.obtenerBusqueda = async(palabra) =>{
+    try {
+        const resultado = await sequelize.query('SELECT nombrePais FROM paises WHERE nombrePais LIKE ?;', {replacements: [`${palabra}%`], type: sequelize.QueryTypes.SELECT});
+        return resultado;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+
+
 Pais.crear = async(nombre, region) => {
     try {
         

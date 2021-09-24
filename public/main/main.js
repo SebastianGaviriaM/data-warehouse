@@ -4,7 +4,7 @@
 const token = localStorage.getItem('token');
 
 if(!token){
-    location.href = 'index.html';
+    location.href = '../index.html';
 }
 
 //Logout
@@ -13,9 +13,8 @@ let logout = document.getElementById('logout');
 
 logout.addEventListener('click', ()=>{
     localStorage.removeItem('token');
-    location.href = 'index.html';
+    location.href = '../index.html';
 });
-
 
 
 
@@ -33,6 +32,7 @@ logout.addEventListener('click', ()=>{
 let contContactos = document.getElementById('contactos');
 let selectTodos = document.getElementById('selectTodos');
 let seleccionActiva = document.getElementById('seleccionActiva');
+let borrarSeleccionados = document.getElementById('borrarSeleccionados');
 let agregarContacto = document.getElementById('agregarContacto');
 let cerrarCreacion = document.getElementById('cerrarCreacion');
 let pop = document.getElementById('pop');
@@ -63,7 +63,15 @@ let contCanales = document.getElementById('contCanales');
 let agregarCanal = document.getElementById('agregarCanal');
 
 let popAdvertencias = document.getElementById('popAdvertencias');
+let popConfirmaciones = document.getElementById('popConfirmaciones');
+let botonCancelar = popConfirmaciones.firstElementChild.lastElementChild.firstElementChild;
+let botonEliminar = popConfirmaciones.firstElementChild.lastElementChild.lastElementChild;
 
+let busqueda = document.getElementById('busqueda');
+let cajonBusqueda = busqueda.firstElementChild;
+let opcionesBusqueda = busqueda.lastElementChild;
+
+let eliminarIndividual;
 listaElim = [];
 
 
@@ -225,12 +233,169 @@ const enviarDetalle = async(contactoAct, canalAct, preferenciaAct, cuentaAct)=>{
     }  
 }
 
+const borrarContacto = async(idSelect)=>{
+    try {
+        const respuesta = await fetch(`/contactos?id=${idSelect}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
 
 
 
 
 
 
+
+
+
+
+
+
+
+// Llamados busqueda
+
+const obtenerRegionesBusqueda = async(busqContacto)=>{
+    try {
+        const respuesta = await fetch(`/regiones/busqContacto?busqueda=${busqContacto}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+
+const obtenerPaisesBusqueda = async(busqContacto)=>{
+    try {
+        const respuesta = await fetch(`/paises/busqContacto?busqueda=${busqContacto}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+
+const obtenerCiudadesBusqueda = async(busqContacto)=>{
+    try {
+        const respuesta = await fetch(`/ciudades/busqContacto?busqueda=${busqContacto}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+
+const obtenerCompaniasBusqueda = async(busqContacto)=>{
+    try {
+        const respuesta = await fetch(`/companias/busqContacto?busqueda=${busqContacto}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+
+const obtenerNombreContactosBusqueda = async(busqContacto)=>{
+    try {
+        const respuesta = await fetch(`/contactos/busqContacto/nombre?busqueda=${busqContacto}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+
+const obtenerApellidoContactosBusqueda = async(busqContacto)=>{
+    try {
+        const respuesta = await fetch(`/contactos/busqContacto/apellido?busqueda=${busqContacto}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+
+const obtenerEmailContactosBusqueda = async(busqContacto)=>{
+    try {
+        const respuesta = await fetch(`/contactos/busqContacto/email?busqueda=${busqContacto}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+
+const obtenerCargoContactosBusqueda = async(busqContacto)=>{
+    try {
+        const respuesta = await fetch(`/contactos/busqContacto/cargo?busqueda=${busqContacto}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+
+const obtenerPantallaContactosPorBusqueda = async(busqContacto)=>{
+    try {
+        const respuesta = await fetch(`/contactos/busqContacto?busqueda=${busqContacto}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
 
 
 
@@ -262,30 +427,63 @@ const seccionEliminar = ()=>{
     }
 }
 
-const colocarContactos = async() =>{
+
+
+
+const colocarContactos = async(tipo, valor) =>{
     try{
-        const contactos = await obtenerPantallaContactos();
+        let contactos = await obtenerPantallaContactos();
+        
+        if(tipo){
+            if(tipo == "Region"){
+                contactos = contactos.filter(x => x.nombreRegion==valor);
+            }
+            else if(tipo == "Pais"){
+                contactos = contactos.filter(x => x.nombrePais==valor);
+            }
+            else if(tipo == "Ciudad"){
+                contactos = contactos.filter(x => x.nombreCiudad==valor);
+            }
+            else if(tipo == "Compania"){
+                contactos = contactos.filter(x => x.nombreCompania==valor);
+            }
+            else if(tipo == "Cargo"){
+                contactos = contactos.filter(x => x.cargo==valor);
+            }
+            else if(tipo == "Nombre"){
+                contactos = contactos.filter(x => x.nombreContacto==valor);
+            }
+            else if(tipo == "Apellido"){
+                contactos = contactos.filter(x => x.apellido==valor);
+            }
+            else if(tipo == "Email"){
+                contactos = contactos.filter(x => x.email==valor);
+            }  
+        }
+        
         contContactos.innerHTML = "";
+
         contactos.forEach(element => {
             contContactos.innerHTML += 
                 `<div class="contacto contactoInd" >
                     <div class="chkbx">
                         <input type="checkbox" id="${element.id}" name="${element.id}">
                     </div>
-                    <div class="contactos letraSub"><h3 >${element.nombreContacto}</h3></div>
+                    <div class="contactos letraSub"><h3 >${element.nombreContacto} ${element.apellido}</h3></div>
                     <div class="pais letraSub "><h3>${element.nombrePais}</h3></div>
                     <div class="compania letraSub"><h3>${element.nombreCompania}</h3></div>
                     <div class="cargo letraSub"><h3>${element.cargo}</h3></div>
                     <div class="canal letraSub"><h3>${element.nombreCanal}</h3></div>
                     <div class="interes letraSub "><h3>${element.interes}%</h3></div>
-                    <div class="acciones letra"><img src="./imgs/menu.png" alt="menu" class="tresptos"><img src="./imgs/editar.png" alt="editar" class="displayNone"><img src="./imgs/eliminar.png" alt="eliminar" class="displayNone"></div>
+                    <div class="acciones letra"><img src="../imgs/menu.png" alt="menu" class="tresptos"><img src="../imgs/editar.png" alt="editar" class="displayNone"><img src="../imgs/eliminar.png" alt="eliminar" class="displayNone"></div>
                 </div>`;
         });
         for (let index = 0; index < contContactos.children.length; index++) {
 
             let nodo = contContactos.children[index];
             let check = nodo.firstElementChild.firstElementChild;     
-
+            let idCont = check.id;
+            let btnBorrarContacto = nodo.lastElementChild.lastElementChild;
             check.addEventListener('click', (e)=>{
                 
                 nodo.classList.toggle('contactoResaltado');
@@ -305,8 +503,12 @@ const colocarContactos = async() =>{
                 seccionEliminar();
             });  
             
+            btnBorrarContacto.addEventListener('click', ()=>{
+                eliminarIndividual = true;
+                listaElim.push(idCont);
+                confirmacionesEliminar();
+            })
             
-            //Falta agregar las funcionalidades de los botones
         }
         
 
@@ -320,7 +522,7 @@ selectTodos.addEventListener('click', (e)=>{
     listaContactos = e.path[3].lastElementChild.children;
     listaCheck = e.path[3].lastElementChild.children;
 
-    console.log(e.target.checked);
+    
     
     for (let index = 0; index < listaContactos.length; index++) {
         const element = listaContactos[index];
@@ -337,7 +539,51 @@ selectTodos.addEventListener('click', (e)=>{
         }       
     }
     seccionEliminar(); 
+});
 
+
+botonCancelar.addEventListener('click', ()=>{
+    popConfirmaciones.classList.toggle('displayNone');
+    popConfirmaciones.classList.toggle('popConfirmaciones');
+    if(eliminarIndividual){
+        listaElim.splice(listaElim.length-1, 1);  
+    }
+});
+
+
+botonEliminar.addEventListener('click', ()=>{
+    popConfirmaciones.classList.toggle('displayNone');
+    popConfirmaciones.classList.toggle('popConfirmaciones');
+    if(eliminarIndividual){
+        borrarContacto(listaElim.pop());    
+    }
+    else{
+        listaElim.forEach(element => {
+            elemento = parseInt(element);
+            borrarContacto(elemento);
+        });
+    }
+    location.reload();
+    
+});
+
+
+function confirmacionesEliminar() {
+    let mensaje = popConfirmaciones.firstElementChild.firstElementChild;
+    popConfirmaciones.classList.toggle('displayNone');
+    popConfirmaciones.classList.toggle('popConfirmaciones');
+    if(!eliminarIndividual){
+        mensaje.innerHTML = `¿Seguro que quieres eliminar estos ${listaElim.length} contactos?` //Inner de el letrero de aviso
+    }
+    else{
+        mensaje.innerHTML = `¿Seguro que quieres eliminar este contacto?`
+    }
+ 
+}
+
+borrarSeleccionados.addEventListener('click', ()=>{
+    eliminarIndividual = false;
+    confirmacionesEliminar();
 });
 
 
@@ -491,6 +737,7 @@ colocarRegiones();
 colocarNombresCompanias();
 
 
+
 function advertenciasCrear(mensaje) {
     popAdvertencias.classList.remove('displayNone');
     popAdvertencias.classList.add('popAdvertencias');
@@ -501,13 +748,23 @@ function advertenciasCrear(mensaje) {
     ok.addEventListener('click', ()=>{popAdvertencias.classList.add('displayNone');popAdvertencias.classList.remove('popAdvertencias');})
 }
 
+
+
+
+
+
+
+
+
+
+
+
 guardarContacto.addEventListener('click', () =>{
 
     listaCanales = [];
     listaCuentas = [];
     listaPreferencias = [];
     for (let index = 0; index < selectCanal.length; index++) {
-
         if(selectCanal[index].value === ""){
             continue;
         }
@@ -541,28 +798,13 @@ guardarContacto.addEventListener('click', () =>{
     else{
         const creacionContactoNuevo = async()=>{
             let idNuevo = await enviarNuevoContacto();
-            console.log(idNuevo);
             for (let index = 0; index < listaCanales.length; index++) {
-                await enviarDetalle(idNuevo[0], listaCanales[index], listaPreferencias[index], listaCuentas[index]);
+                enviarDetalle(idNuevo[0], listaCanales[index], listaPreferencias[index], listaCuentas[index]);
             }
             
-        }
-        
+        }     
         creacionContactoNuevo();
-        colocarContactos();
         location.reload();
     }
 
 }); 
-
-
-
-
-
-
-
-
-
-
-
-

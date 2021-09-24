@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./scss/styles.css">
+    <link rel="stylesheet" href="../scss/styles.css">
     <title>Inicio</title>
 </head>
 <body>
@@ -20,23 +20,23 @@
         <nav>
             <ul>
 
-                <li id="linkContactos">
+                <li class="linkContactos">
                     <a href="./main.html" >Contactos</a>
                 </li>
 
                 <li>
-                    <a href="">Compañias</a>
+                    <a href="../companias/companias.html">Compañias</a>
                 </li>
 
                 <li>
-                    <a href="">Usuarios</a>
+                    <a href="../usuarios/usuarios.html">Usuarios</a>
                 </li>
 
                 <li>
-                    <a href="">Región-Ciudad</a>
+                    <a href="../regiones/regiones.html">Región-Ciudad</a>
                 </li>
                 <li>
-                    <input type="button" value="Logout" id = "logout"></input>
+                    <input type="button" value="Logout" id ="logout"></input>
                 </li>
 
             </ul>
@@ -49,10 +49,16 @@
 
     <div class="controlContactos">
 
-        <div>
-
-            <input type="text" id="buscador" class="buscador">
-            <button id="activarBusqueda" class="activarBusqueda"></button>  
+        <div class="contBusqueda">
+            <div class="busquedaNoActiva" id="busqueda">
+                <input type="text" id="buscador" class="buscador">
+                <div class="opcionesBusqueda" id="opcionesBusqueda">
+                    <p class="opcionBusqueda"><span>asda</span>-<span>asdf</span></p>
+                </div>
+                
+            </div>
+            
+            <input type="button"id="activarBusqueda" class="activarBusqueda">
 
         </div>
 
@@ -66,7 +72,7 @@
     
     <div id="seleccionActiva" class="seleccionActiva">
         <div class= "displayNone" >2 Seleccionados</div>
-        <div class="displayNone "><img src="./imgs/eliminar.png" alt=""><h4>Eliminar contactos</h4></div>
+        <div class="displayNone " id="borrarSeleccionados"><img src="../imgs/eliminar.png" alt=""><h4>Eliminar contactos</h4></div>
         
     </div>
         <div class="contContactos"> 
@@ -99,7 +105,7 @@
 
             <div class="titCrearCont">
                 <h2>Nuevo contacto</h2>
-                <img src="./imgs/letra-x.png" alt="" id="cerrarCreacion">
+                <img src="../imgs/letra-x.png" alt="" id="cerrarCreacion">
             </div>
             <div>
 
@@ -208,9 +214,22 @@
 
 
 
+    <div id="popConfirmaciones" class="displayNone">
+        <div class="contConfirmacion">
+            <p class="letraInputs">asdfead</p>
+            <div>
+                <input type="button" value="Cancelar" class="letraInputs">
+                <input type="button" value="Eliminar" class="letraInputs">
+            </div>
+        </div>
+    </div>
+
+
+
     
 
 
     <script src="main.js"></script>
+    <script src="buscarContactos.js"></script>
 </body>
 </html>

@@ -111,7 +111,7 @@
             }
         }
         .contactos{
-            width: 18.3vw;
+            width: 15.3vw;
         }
         .pais{
             width: 10vw;
@@ -150,6 +150,39 @@
     
 }
 
-.displayNone{
-    display: none;
+.popConfirmaciones{  
+    display: flex;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.75);
+    
+    .contConfirmacion{ 
+        background-color: #FFFFFF;
+        width: 25vw;
+        height: 12vw;
+        display: flex;
+        flex-direction: column; 
+        justify-content: space-evenly;
+
+        border: 0.2961vw solid #0683F9;
+        p{
+            align-self: center;
+            padding: 2vw;
+        }
+        div{
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            input{
+                padding: 0.5vw;
+                color:#FFFFFF;
+                background-color: #0683F9;
+                border: none;
+            }
+        }
+    }
 }

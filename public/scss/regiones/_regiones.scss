@@ -1,0 +1,26 @@
+.paginaRegiones{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    list-style: none;
+    margin: 0 30vw 0;
+    margin-top: 5vw;
+    border: 0.03vw solid black;
+
+    li{
+        padding: 1vw;
+    }
+
+    .paises{
+        list-style: none;
+
+        .ciudades{
+            list-style: none;
+        }
+
+    }
+    
+}
+
+

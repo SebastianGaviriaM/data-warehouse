@@ -87,7 +87,7 @@
   font-size: 0.8vw;
 }
 
-.header nav ul #linkContactos {
+.header nav ul .linkContactos {
   border-bottom: 0.2vw solid white;
 }
 
@@ -152,27 +152,113 @@
           justify-content: space-between;
 }
 
-.controlContactos div {
+.controlContactos .contBusqueda {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 3vw;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
-.controlContactos div .buscador {
-  width: 36.7vw;
+.controlContactos .contBusqueda .busquedaNoActiva {
+  border: 0.07vw solid #CCCCCC;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: absolute;
+}
+
+.controlContactos .contBusqueda .busquedaNoActiva .buscador {
+  width: 32.7vw;
   height: 100%;
   font-family: "Noto Sans TC", sans-serif;
   font-size: 0.9vw;
   font-weight: 300;
-  padding-left: 2vw;
-  border: 0.07vw solid #CCCCCC;
+  margin: 0 2vw 0;
+  border: 0;
+  outline: 0;
+  height: 3vw;
 }
 
-.controlContactos div .activarBusqueda {
-  width: 3vw;
-  margin-left: 0.7vw;
+.controlContactos .contBusqueda .busquedaNoActiva .opcionesBusqueda {
+  display: none;
+}
+
+.controlContactos .contBusqueda .busquedaNoActiva .opcionesBusqueda .opcionBusqueda {
+  display: none;
+}
+
+.controlContactos .contBusqueda .busquedaActiva {
+  border: 0.07vw solid #CCCCCC;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: absolute;
+}
+
+.controlContactos .contBusqueda .busquedaActiva .buscador {
+  width: 32.7vw;
   height: 100%;
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 0.9vw;
+  font-weight: 300;
+  margin: 0 2vw 0;
+  border: 0;
+  outline: 0;
+  height: 3vw;
+}
+
+.controlContactos .contBusqueda .busquedaActiva .opcionesBusqueda {
+  background-color: #FFFFFF;
+}
+
+.controlContactos .contBusqueda .busquedaActiva .opcionesBusqueda div {
+  margin: 0 2vw 0;
+  border-top: 0.07vw solid #CCCCCC;
+}
+
+.controlContactos .contBusqueda .busquedaActiva .opcionesBusqueda .opcionBusqueda {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 3vw;
+  border: 0;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 0.9vw;
+  font-weight: 300;
+}
+
+.controlContactos .contBusqueda .busquedaActiva .opcionesBusqueda .opcionBusqueda:hover {
+  background-color: #8EC7FC;
+}
+
+.controlContactos .contBusqueda .busquedaActiva .opcionesBusqueda .opcionBusqueda span {
+  padding-right: 0.3vw;
+  padding-left: 0.3vw;
+}
+
+.controlContactos .contBusqueda .busquedaActiva .opcionesBusqueda .opcionBusqueda span:first-child {
+  color: #807878;
+}
+
+.controlContactos .contBusqueda .activarBusqueda {
+  width: 3vw;
+  margin-left: 37.4vw;
+  height: 3vw;
   background-color: white;
   border: 0.07vw solid #CCCCCC;
 }
@@ -311,7 +397,7 @@
 }
 
 .contContactos div .contactos {
-  width: 18.3vw;
+  width: 15.3vw;
 }
 
 .contContactos div .pais {
@@ -357,8 +443,63 @@
   border-bottom: 0.07vw solid #CCCCCC;
 }
 
-.displayNone {
-  display: none;
+.popConfirmaciones {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.popConfirmaciones .contConfirmacion {
+  background-color: #FFFFFF;
+  width: 25vw;
+  height: 12vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  border: 0.2961vw solid #0683F9;
+}
+
+.popConfirmaciones .contConfirmacion p {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  padding: 2vw;
+}
+
+.popConfirmaciones .contConfirmacion div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.popConfirmaciones .contConfirmacion div input {
+  padding: 0.5vw;
+  color: #FFFFFF;
+  background-color: #0683F9;
+  border: none;
 }
 
 .pop {
@@ -605,5 +746,38 @@
   height: 2vw;
   background-color: #0683F9;
   border: none;
+}
+
+.displayNone {
+  display: none;
+}
+
+.paginaRegiones {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  list-style: none;
+  margin: 0 30vw 0;
+  margin-top: 5vw;
+  border: 0.03vw solid black;
+}
+
+.paginaRegiones li {
+  padding: 1vw;
+}
+
+.paginaRegiones .paises {
+  list-style: none;
+}
+
+.paginaRegiones .paises .ciudades {
+  list-style: none;
 }
 /*# sourceMappingURL=styles.css.map */

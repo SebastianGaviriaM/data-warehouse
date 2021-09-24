@@ -13,6 +13,20 @@ Ciudad.obtenerTodos = async() =>{
     }
 }
 
+Ciudad.obtenerBusqueda = async(palabra) =>{
+    try {
+        const resultado = await sequelize.query('SELECT nombreCiudad FROM ciudades WHERE nombreCiudad LIKE ?;', {replacements: [`${palabra}%`], type: sequelize.QueryTypes.SELECT});
+        return resultado;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+
+
+
 Ciudad.crear = async(nombreCiudad, pais) => {
     try {
         

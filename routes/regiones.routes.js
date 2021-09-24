@@ -8,6 +8,10 @@ router.route('/')
         res.json(result)
     })
 
-
+router.route('/busqContacto')
+    .get(async(req, res)=>{         
+        const result = await Region.obtenerBusqueda(req.query.busqueda);
+        res.json(result)
+    })
 
 module.exports = router; 

@@ -15,6 +15,12 @@ router.route('/nombrePais')
         res.json(result)
     })
 
+    
+router.route('/busqContacto')
+    .get(async(req, res)=>{         
+        const result = await Ciudad.obtenerBusqueda(req.query.busqueda);
+        res.json(result)
+    })
 
 
 module.exports = router; 

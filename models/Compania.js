@@ -13,7 +13,18 @@ Compania.obtenerTodos = async() =>{
     }
 }
 
-Compania.crear = async(nombreCompania, telefono, email, direccion, ciudad) =>{
+Compania.obtenerBusqueda = async(palabra) =>{
+    try {
+        const resultado = await sequelize.query('SELECT nombreCompania FROM companias WHERE nombreCompania LIKE ?;', {replacements: [`${palabra}%`], type: sequelize.QueryTypes.SELECT});
+        return resultado;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+Compania.crear = async(nombreCompania, telefono, email, direccion, Compania) =>{
     try {
         
         const resultado = await sequelize.query('INSERT INTO companias (nombreCompania, telefono, email, direccion, ciudad) VALUES (?, ?, ? ,? ,?)', {replacements:[nombreCompania, telefono, email, direccion, ciudad]});

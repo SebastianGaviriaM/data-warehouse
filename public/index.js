@@ -2,7 +2,7 @@ try {
     const token = localStorage.getItem('token');
 
     if(token){
-        location.href = 'main.html'; 
+        location.href = '../main/main.html'; 
     }  
 } catch (error) {
     console.log("Token expiró");
@@ -28,7 +28,7 @@ const enviarLogin = async()=>{
     if(respuesta.status == 200){
         const json = await respuesta.json();
         localStorage.setItem('token', json);
-        location.href = "main.html";
+        location.href = "../main/main.html";
     }else{
         console.log("error, no se puede pasar ");
     }

@@ -2,6 +2,9 @@ const sequelize = require('../conexion');
 
 let Region = {};
 
+
+
+
 Region.obtenerTodos = async() =>{
     try {
         
@@ -12,6 +15,23 @@ Region.obtenerTodos = async() =>{
         console.log(error);
     }
 }
+
+Region.obtenerBusqueda = async(palabra) =>{
+    try {
+        const resultado = await sequelize.query('SELECT nombreRegion FROM regiones WHERE nombreRegion LIKE ?;', {replacements: [`${palabra}%`], type: sequelize.QueryTypes.SELECT});
+        return resultado;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+
+
+
+
+
 
 Region.crear = async(nombreRegion) => {
     try {
