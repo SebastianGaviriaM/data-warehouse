@@ -42,7 +42,7 @@ let tituloCreacion = popCreacion.firstElementChild.firstElementChild.firstElemen
 let idActual;
 let idReferenciaPadre;
 let tipoDeObjeto;
-
+let accion;
 
 
 
@@ -154,7 +154,48 @@ const crearCiudad = async(nombre, idPadre)=>{
 }
 
 
-
+const borrarRegion = async(idSelect)=>{
+    try {
+        const respuesta = await fetch(`/regiones?id=${idSelect}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+const borrarPais = async(idSelect)=>{
+    try {
+        const respuesta = await fetch(`/paises?id=${idSelect}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+const borrarCiudad = async(idSelect)=>{
+    try {
+        const respuesta = await fetch(`/ciudades?id=${idSelect}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
 
 
 
@@ -172,6 +213,7 @@ const colocarRegiones = async() =>{
     contRegiones.firstElementChild.addEventListener('click', ()=>{
         popCreacion.classList.toggle('popCrear');
         popCreacion.classList.toggle('displayNone');
+        tituloCreacion.innerHTML = "Nombre de la nueva Región";
         tipoDeObjeto = "region";
     });                                                           //Anadir nueva region     
 
@@ -200,14 +242,23 @@ const colocarRegiones = async() =>{
         regionActual.firstElementChild.lastElementChild.lastElementChild.addEventListener('click', (e)=>{       // Eliminar Region
             popConfirmaciones.classList.toggle('displayNone');
             popConfirmaciones.classList.toggle('popConfirmaciones');
-            popConfirmaciones.firstElementChild.firstElementChild.innerHTML = "Si eliminas esta región eliminarás sus países y ciudades asociados, además, los contactos y compañias asociados a estos, ¿Estás seguro de que quieres continuar?"
+            popConfirmaciones.firstElementChild.firstElementChild.innerHTML = "Si eliminas esta región eliminarás sus países y ciudades asociados, además, los contactos y compañias asociados a estos, ¿Estás seguro de que quieres continuar?";
             
+
+            idActual = e.target.alt;
+            tipoDeObjeto = "region";
+            
+
             
             e.stopPropagation();
         });
 
         regionActual.firstElementChild.lastElementChild.firstElementChild.addEventListener('click', (e)=>{       // Editar Region
             console.log(elementRegion.id+1); 
+
+            idActual = e.target.alt;
+            tipoDeObjeto = "region";
+
             e.stopPropagation();
         });
         
@@ -228,6 +279,8 @@ const colocarRegiones = async() =>{
                 tituloCreacion.innerHTML = "Nombre de la nueva ciudad";
                 tipoDeObjeto = "ciudad";
                 idReferenciaPadre = elementPais.id;
+                accion = "crear";
+                popCreacion.firstElementChild.lastElementChild.lastElementChild.value = "Crear esa monda";
             })
 
 
@@ -238,12 +291,21 @@ const colocarRegiones = async() =>{
 
 
             paisActual.firstElementChild.lastElementChild.lastElementChild.addEventListener('click', (e)=>{     //eliminar Pais
-                console.log("eliminar" + elementPais.id);
+                popConfirmaciones.classList.toggle('displayNone');
+                popConfirmaciones.classList.toggle('popConfirmaciones');
+                popConfirmaciones.firstElementChild.firstElementChild.innerHTML = "Si eliminas este país eliminarás las ciudades asociadas, además, los contactos y compañias asociados a estas, ¿Estás seguro de que quieres continuar?";
+
+                idActual = e.target.alt;
+                tipoDeObjeto = "pais";
+
                 e.stopPropagation();
             });
 
             paisActual.firstElementChild.lastElementChild.firstElementChild.addEventListener('click', (e)=>{    //Editar Pais
                 console.log("editar" + elementPais.id);
+
+                idActual = e.target.alt;
+                tipoDeObjeto = "pais";
                 e.stopPropagation();
             });
 
@@ -256,15 +318,23 @@ const colocarRegiones = async() =>{
                 let ciudadActual = document.createElement('li');
                 ciudadActual.classList.add('ciudad');
 
-                ciudadActual.innerHTML = `<p>${elementCiudad.nombreCiudad}</p> <div><img src="../imgs/editar.png" alt="elementCiudad.id"><img src="../imgs/eliminar.png" alt="elementCiudad.id"></div>`;
+                ciudadActual.innerHTML = `<p>${elementCiudad.nombreCiudad}</p> <div><img src="../imgs/editar.png" alt="${elementCiudad.id}"><img src="../imgs/eliminar.png" alt="${elementCiudad.id}"></div>`;
 
 
-                ciudadActual.lastElementChild.lastElementChild.addEventListener('click', ()=>{      //Eliminar ciudad
-                    console.log(elementCiudad.id);
+                ciudadActual.lastElementChild.lastElementChild.addEventListener('click', (e)=>{      //Eliminar ciudad
+                    popConfirmaciones.classList.toggle('displayNone');
+                    popConfirmaciones.classList.toggle('popConfirmaciones');
+                    popConfirmaciones.firstElementChild.firstElementChild.innerHTML = "Si eliminas esta ciudad eliminarás los contactos y compañias asociados a esta, ¿Estás seguro de que quieres continuar?";
+
+                    idActual = e.target.alt;
+                    tipoDeObjeto = "ciudad";
+
+                    e.stopPropagation();
                 });
 
                 ciudadActual.lastElementChild.firstElementChild.addEventListener('click', ()=>{      //editar ciudad
-                    console.log(elementCiudad.id+1);
+                    idActual = e.target.alt;
+                    tipoDeObjeto = "pais";
                 });
 
                 paisActual.lastElementChild.appendChild(ciudadActual);
@@ -297,13 +367,31 @@ function advertenciasCrear(mensaje) {
 
 
 
+
+
+
+
 cancelarEliminacion.addEventListener('click', ()=>{
     popConfirmaciones.classList.toggle('displayNone');
     popConfirmaciones.classList.toggle('popConfirmaciones');
 });
 
+
+
+
 eliminar.addEventListener('click',(e)=>{
-    console.log(e.target);                                      //Falta eliminar
+    if(tipoDeObjeto=="region"){
+        borrarRegion(idActual);
+        location.reload();
+    }
+    else if(tipoDeObjeto=="pais"){
+        borrarPais(idActual);
+        location.reload();
+    }
+    else if(tipoDeObjeto=="ciudad"){
+        borrarCiudad(idActual);
+        location.reload();
+    }                                   //Falta eliminar
 });
 
 
@@ -339,13 +427,8 @@ crearNuevo.addEventListener('click', ()=>{
     }
 });
 
-console.log(crearNuevo);
 
 colocarRegiones();
-
-
-
-
 
 
 

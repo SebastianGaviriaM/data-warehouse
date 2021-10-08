@@ -12,6 +12,11 @@ router.route('/')
         const result = await Pais.crear(nombrePais, region);
         res.json(result);
     })
+    .delete(async(req, res)=>{
+        const id = req.query.id
+        const result = await Pais.borrar(id);
+        res.json(result);
+    })
 
 
 router.route('/nombreRegion')

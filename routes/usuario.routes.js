@@ -15,12 +15,9 @@ router.route('/')
     })
     .put(async(req, res) =>{
         const id = req.query.id;
-        const {nombreUsuario, nombreYApellido, email, telefono, direccion} = req.body;
-        const result = await Usuario.actualizar(id, nombreUsuario, nombreYApellido, email, telefono, direccion);
-        res.json({
-            status:200,
-            respuesta: "Usuario actualizado"
-        });
+        const {nombre, apellido, email, contrasena, admin} = req.body;
+        const result = await Usuario.actualizar(nombre, apellido, email, contrasena, admin, id);
+        res.json(result);
     })
     .delete(async(req, res)=>{
         const id = req.query.id;

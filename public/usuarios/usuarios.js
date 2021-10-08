@@ -34,8 +34,23 @@ let inputRepContrasena = document.getElementById('inputRepContrasena');
 let crearUsuario = document.getElementById('crearUsuario');
 
 
-let popAdvertencias = document.getElementById('popAdvertencias');
+    //variables Pops
 
+
+let popAdvertencias = document.getElementById('popAdvertencias');
+let popCreacion = document.getElementById('popCreacion');
+let cancelarCreacion = document.getElementById('cancelarCreacion');
+let edicion = document.getElementById('edicion');
+
+let inputNombrePop = document.getElementById('inputNombrePop');
+let inputApellidoPop = document.getElementById('inputApellidoPop');
+let inputEmailPop = document.getElementById('inputEmailPop');
+let inputPerfilPop = document.getElementById('inputPerfilPop');
+let inputContrasenaPop = document.getElementById('inputContrasenaPop');
+let inputRepContrasenaPop = document.getElementById('inputRepContrasenaPop');
+
+
+let idTurno; 
 
 
 // Llamados a BD
@@ -82,6 +97,34 @@ const enviarNuevoUsuario = async(nombreUs, apellidoUs, emailUs, contrasenaUs, ad
     }  
 }
 
+const putUsuario = async(id)=>{
+    try {
+        const respuesta = await fetch(`/usuarios?id=${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                nombre: inputNombrePop.value,
+                apellido: inputApellidoPop.value,
+                email: inputEmailPop.value,
+                contrasena: inputContrasenaPop.value,
+                admin: parseInt(inputPerfilPop.value)
+            })
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+
+
+
+
+
+
+
 
 const colocarUsuarios = async() => {
 
@@ -91,8 +134,7 @@ const colocarUsuarios = async() => {
 
     for (let index = 0; index < usuarios.length; index++) {
         const element = usuarios[index];
-        let admin = "Básico"
-        
+        let admin = "Básico";
         if(element.admin){
             admin = "Admin";
         }
@@ -103,11 +145,33 @@ const colocarUsuarios = async() => {
             <p>${element.apellido}</p>
             <p class="emailUsuario">${element.email}</p> 
             <p class="perfilUsuario">${admin}</p>
-            <div class="accionesUsuario"><img src="../imgs/menu.png" alt="editar"><img src="../imgs/editar.png" alt="${element.id}"><img src="../imgs/eliminar.png" alt="${element.id}"></div>
+            <div class="accionesUsuario"><img src="../imgs/menu.png" alt="${element.id}"><img src="../imgs/editar.png" alt="${element.id}"><img src="../imgs/eliminar.png" alt="${element.id}"></div>
          </div>`;
 
     }
 
+    for (let index = 1; index < contUsuarios.children.length; index++) {
+        const element = contUsuarios.children[index];
+        let btnEditar = element.lastElementChild.children[1];
+
+        btnEditar.addEventListener('click',()=>{
+            popCreacion.classList.add('popCrear');
+            popCreacion.classList.remove('displayNone');
+
+            idTurno = parseInt(btnEditar.alt);
+
+            inputNombrePop.value = element.children[0].innerHTML;
+            inputApellidoPop.value = element.children[1].innerHTML;
+            inputEmailPop.value = element.children[2].innerHTML;
+            if(element.children[3].innerHTML=="Admin"){
+                inputPerfilPop.value = 1;
+            }
+            else{
+                inputPerfilPop.value = 0;
+            }
+        });
+
+    }
 
 }
 
@@ -142,3 +206,37 @@ const enviarUsuario = async()=>{
 
 
 crearUsuario.addEventListener('click', enviarUsuario);
+
+
+
+cancelarCreacion.addEventListener('click', ()=>{
+    popCreacion.classList.remove('popCrear');
+    popCreacion.classList.add('displayNone');
+
+
+    for (let index = 0; index < 6; index++) {
+        const element = popCreacion.firstElementChild.children[index].lastElementChild;
+        if(index==3){
+            element.value = 2;
+        }
+        else{
+            element.value = "";
+        }
+    }
+});
+
+
+edicion.addEventListener('click', ()=>{
+
+    if(inputNombrePop.value == ""| inputApellidoPop.value == "" | inputEmailPop.value == "" | inputPerfilPop.value == 2 | inputContrasenaPop.value == "" | inputRepContrasenaPop.value == ""){
+        advertenciasCrear("Llena todos los espacios para editar el usuario");
+    }
+    else if(inputContrasenaPop.value != inputRepContrasenaPop.value){
+        advertenciasCrear("Las contraseñas no coinciden");
+    }
+    else{
+        putUsuario(idTurno);
+
+        location.reload();
+    }
+});

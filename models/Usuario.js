@@ -26,9 +26,9 @@ Usuario.crear = async(nombre, apellido, email, passwordhash, admin) => {
         
     }  
 };
-Usuario.actualizar = async (id, nombre, apellido, email) =>{
+Usuario.actualizar = async (nombre, apellido, email, contrasena, admin, id) =>{
     try {
-        const resultado = await sequelize.query('UPDATE usuarios SET nombre = ?, apellido = ?, email = ? WHERE id = ?', {replacements:[nombre, apellido, email,id]});
+        const resultado = await sequelize.query('UPDATE usuarios SET nombre = ?, apellido = ?, email = ?, contrasena = ?, admin = ? WHERE id = ?', {replacements:[nombre, apellido, email, contrasena, admin, id]});
         return resultado;
         
     } catch (error) {

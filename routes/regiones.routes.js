@@ -12,6 +12,11 @@ router.route('/')
         const result = await Region.crear(nombreRegion);
         res.json(result);
     })
+    .delete(async(req, res)=>{
+        const id = req.query.id
+        const result = await Region.borrar(id);
+        res.json(result);
+    })
 
 router.route('/busqContacto')
     .get(async(req, res)=>{         
