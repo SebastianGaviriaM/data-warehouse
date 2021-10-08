@@ -4,7 +4,7 @@ let Canal = {};
 
 Canal.obtenerTodos = async() =>{
     try {  
-        const resultado = await sequelize.query('SELECT nombreCanal, id FROM canales', {type: sequelize.QueryTypes.SELECT});
+        const resultado = await sequelize.query('SELECT nombreCanal, id FROM canales;', {type: sequelize.QueryTypes.SELECT});
         return resultado;
 
     } catch (error) {
@@ -15,7 +15,7 @@ Canal.obtenerTodos = async() =>{
 Canal.crear = async(nombreCanal) =>{
     try {
         
-        const resultado = await sequelize.query('INSERT INTO canales (nombreCanal) VALUES (?)', {replacements:[nombreCanal]});
+        const resultado = await sequelize.query('INSERT INTO canales (nombreCanal) VALUES (?);', {replacements:[nombreCanal]});
         return resultado;
 
     } catch (error) {
@@ -26,7 +26,7 @@ Canal.crear = async(nombreCanal) =>{
 Canal.actualizar = async(id, nombreCanal) =>{
     try {
         
-        const resultado = await sequelize.query('UPDATE canales SET (nombreCanal=?) VALUES (?) WHERE id=?', {replacements:[nombreCanal, id]});
+        const resultado = await sequelize.query('UPDATE canales SET (nombreCanal=?) VALUES (?) WHERE id=?;', {replacements:[nombreCanal, id]});
         return resultado;
 
     } catch (error) {
@@ -37,18 +37,20 @@ Canal.actualizar = async(id, nombreCanal) =>{
 Canal.borrar = async(id) =>{
     try {
         
-        const resultado = await sequelize.query('DELETE FROM canales WHERE id=?', {replacements:[id]});
+        const resultado = await sequelize.query('DELETE FROM canales WHERE id=?;', {replacements:[id]});
         return resultado;
 
     } catch (error) {
         console.log(error);
     }
 }
+
+
 
 Canal.crearDetalles = async(contacto, canal, preferencia, cuenta) =>{
     try {
         
-        const resultado = await sequelize.query('INSERT INTO canalescontactos (contacto_id, canal_id, preferencia, cuenta) VALUES (?, ?, ?, ?)', {replacements:[contacto, canal, preferencia, cuenta]});
+        const resultado = await sequelize.query('INSERT INTO canalescontactos (contacto_id, canal_id, preferencia, cuenta) VALUES (?, ?, ?, ?);', {replacements:[contacto, canal, preferencia, cuenta]});
         return resultado;
 
     } catch (error) {
@@ -56,7 +58,25 @@ Canal.crearDetalles = async(contacto, canal, preferencia, cuenta) =>{
     }
 }
 
+Canal.obtenerDetallesPorContacto = async(contactoId) =>{
+    try {  
+        const resultado = await sequelize.query('SELECT * FROM canalescontactos WHERE contacto_id=?;', {replacements:[parseInt(contactoId)], type: sequelize.QueryTypes.SELECT});
+        return resultado;
 
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+Canal.borrarDetalle = async(idCanalContacto) =>{
+    try {  
+        const resultado = await sequelize.query('DELETE FROM canalescontactos WHERE id=?;', {replacements:[parseInt(idCanalContacto)]});
+        return resultado;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 
 module.exports = Canal;

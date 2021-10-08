@@ -46,27 +46,47 @@
 
     <h2 class="tituloSeccion">Regiones/Paises/Ciudades</h2>
     
-    <ul class="letra paginaRegiones">
-
-        <li>
-            <h3>Region</h3>
-            <ul class="paises">
-
-                <li>
-
-                    <h4>Pais</h4>
-                    <ul class="ciudades">
-                        <li><p>Ciudad</p></li>
-                    </ul>
-
-                </li>
-
-
-            </ul>
-
-
-        </li>
+    <ul class="letra regiones" id="contRegiones">
+        
     </ul>
+
+
+
+
+
+    <div id="popConfirmaciones" class="displayNone">
+        <div class="contConfirmacion">
+            <p class="letraInputs">asdfead</p>
+            <div>
+                <input type="button" value="Cancelar" class="letraInputs">
+                <input type="button" value="Eliminar" class="letraInputs">
+            </div>
+        </div>
+    </div>
+
+
+    <div id="popCreacion" class="displayNone letra">
+        <div class="contCrear">
+            <div>
+                <p>Nombre de la nueva region</p>
+                <input type="text" id="nombre" class="inputVariable">
+            </div>
+            <div>
+                <input type="button" value="Cancelar" id="cancelarCreacion" class="botonPop">
+                <input type="button" value="Crear" id="creacion" class="botonPop">
+            </div>
+            
+        </div>
+    </div>
+
+
+    
+    <div id="popAdvertencias" class="displayNone">
+        <div>
+            <p class="letraInputs"></p>
+            <input type="button" value="OK" class="letraInputs">
+        </div>
+    </div>
 
     <script src="./regiones.js"></script>
 </body>

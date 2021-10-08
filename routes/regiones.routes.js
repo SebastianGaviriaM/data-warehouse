@@ -7,6 +7,11 @@ router.route('/')
         const result = await Region.obtenerTodos();
         res.json(result)
     })
+    .post(async(req, res)=>{
+        const {nombreRegion} = req.body;
+        const result = await Region.crear(nombreRegion);
+        res.json(result);
+    })
 
 router.route('/busqContacto')
     .get(async(req, res)=>{         

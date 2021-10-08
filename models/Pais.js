@@ -26,7 +26,7 @@ Pais.obtenerBusqueda = async(palabra) =>{
 
 
 
-Pais.crear = async(nombre, region) => {
+Pais.crear = async(nombrePais, region) => {
     try {
         
         const resultado = await sequelize.query('INSERT INTO paises (nombrePais, region) VALUES (?, ?)', {replacements: [nombrePais, region]});

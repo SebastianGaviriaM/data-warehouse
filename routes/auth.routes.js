@@ -36,7 +36,6 @@ router.route('/token')
         let token = req.headers.authorization.split(' ')[1];
 
         let payload = jwt.verify(token, process.env.jwtPass)
-        console.log(payload);
         res.send(payload.usuario);
     });
 

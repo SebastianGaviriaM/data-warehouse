@@ -70,4 +70,5 @@ Ciudad.obtenerPorPais = async(pais) =>{
     }
 }
 
+
 module.exports = Ciudad;

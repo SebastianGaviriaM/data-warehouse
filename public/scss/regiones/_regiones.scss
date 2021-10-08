@@ -1,26 +1,147 @@
-.paginaRegiones{
+.regiones{
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
+
+    font-weight: 100;
 
     list-style: none;
     margin: 0 30vw 0;
-    margin-top: 5vw;
-    border: 0.03vw solid black;
-
-    li{
-        padding: 1vw;
-    }
-
-    .paises{
-        list-style: none;
-
-        .ciudades{
-            list-style: none;
-        }
-
-    }
+    margin-top: 4vw;
+    height: fit-content ;
     
+
+    .region{
+        border: 0.03vw solid black;
+        width: 100%;
+        height: 100%;
+        padding: 1vw;
+        margin-top: 1vw;
+
+        div{
+            div{
+                display: none;
+            }
+            &:hover{
+                display: flex;
+                justify-content: space-between;
+                div{
+                    display: flex;
+                    align-items: center;
+                    img{
+                        width: 1vw;
+                        height: 1vw;
+                        margin-left: 1vw;
+                    }
+                }
+
+            }
+
+        }
+        .paises{
+            display: none;
+        }
+    }   
+    .regionActiva{
+
+        .paises{
+            display: flex;
+            flex-direction: column-reverse;
+            
+            list-style: none;
+
+            padding: 0 1vw 0;
+            margin-top: 1vw;
+            border-top: 0.03vw solid black;
+
+            .pais{
+
+                
+                padding: 1vw;
+                .ciudades{
+                    display: none;
+                }
+            }
+            .paisActivo{
+                
+                .ciudades{
+                    display: flex;
+                    flex-direction: column-reverse;
+
+                    padding: 0 1vw 0;
+                    margin-top: 1vw;
+                    border-top: 0.03vw solid black;
+
+                    .ciudad{
+                        display: flex;
+                        justify-content: space-between;
+                        padding: 1vw;
+                        div{
+                            display: none;
+                        }
+                        &:hover{
+                            display: flex;
+                            justify-content: space-between;
+                            div{
+                                display: flex;
+                                align-items: center;
+                                img{
+                                    width: 1vw;
+                                    height: 1vw;
+                                    margin-left: 1vw;
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+      
+    }
+
 }
+
+
+.anadirRegion{  
+    border: none;
+    width: 100%;
+    height: 100%;
+    padding: 1vw;
+    margin-top: 1vw;
+    background-color: #0683F9;
+    color: white;
+    font-weight: 300;
+
+    display: flex;
+    justify-content: center;
+}
+.anadirPais{
+    border: none;
+    width: 100%;
+    height: 100%;
+    padding: 0.7vw;
+    background-color: #0683F9;
+    color: white;
+    font-weight: 300;
+    margin-top: 1vw;
+
+    display: flex;
+    justify-content: center;
+}
+.anadirCiudad{
+    border: none;
+    width: 100%;
+    height: 100%;
+    padding: 0.5vw;
+    background-color: #0683F9;
+    color: white;
+    font-weight: 300;
+    margin-top: 1vw;
+
+    display: flex;
+    justify-content: center;
+}
+
 
 

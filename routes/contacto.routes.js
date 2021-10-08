@@ -19,6 +19,13 @@ router.route('/')
         const result = await Contacto.crear(nombreContacto, apellido, email, compania, cargo, interes, ciudad);
         res.json(result);
     })
+    .put(async(req, res) =>{
+        
+        const {nombreContacto, apellido, email, compania, cargo, interes, ciudad} = req.body;
+        const id = req.query.id;
+        const result = await Contacto.actualizar(nombreContacto, apellido, email, compania, cargo, interes, ciudad, id);
+        res.json(result);
+    })
     .delete(async(req, res)=>{
         const id = req.query.id;
         await Contacto.borrar(id);

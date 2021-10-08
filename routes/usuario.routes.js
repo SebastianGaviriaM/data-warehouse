@@ -1,10 +1,17 @@
 const router = require('express').Router();
+const bcrypt = require('bcryptjs');
 const Usuario = require('../models/Usuario');
 
 router.route('/')
     .get(async(req, res)=>{         //Middleware solo admin
         const result = await Usuario.obtenerTodos();
         res.json(result)
+    })
+    .post(async(req, res)=>{
+        const {nombre, apellido, email, contrasena, admin} = req.body;
+        const passwordhash = bcrypt.hashSync(contrasena, parseInt(process.env.bcrypttmes));
+        const resultado = Usuario.crear(nombre, apellido, email, passwordhash, admin);
+        res.json(resultado);
     })
     .put(async(req, res) =>{
         const id = req.query.id;

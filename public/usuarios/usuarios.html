@@ -46,6 +46,56 @@
     
     <h2 class="tituloSeccion">Usuarios</h2>
 
+    <div class="registro letra">
+            <h3>CREAR USUARIO</h3>
+            <div>
+                <div><h4>Nombre</h4><input type="text" id="inputNombre"></div>
+                <div><h4>Apellido</h4><input type="text" id="inputApellido"></div>
+                <div><h4>Email</h4><input type="text" id="inputEmail"></div>
+                <div><h4>Perfil</h4><select name="name" id="selectAdmin"><option value="2"></option><option value="1">Admin</option><option value="0">Básico</option></select></div>
+                <div><h4>Contraseña</h4><input type="password" id="inputContrasena"></div>
+                <div><h4>Repetir contraseña</h4><input type="password"id="inputRepContrasena"></div>
+            </div>
+            <input type="button" value="Crear" id="crearUsuario">
+    </div>
+
+    <div class="letra princUsuarios" id="contUsuarios">
+        <div class="division titCompanias"><h4>Nombre</h4><h4>Apellido</h4><h4 class="emailUsuario">Email</h4><h4 class="perfilUsuario">Perfil</h4><h4 class="accionesUsuario">Acciones</h4></div>   
+    </div>
+
+    <div id="popCreacion" class="displayNone letra">
+        <div class="contCrear">
+            <div>
+                <p>Nombre Usuario</p>
+                <input type="text" id="inputNombre" class="inputVariable">
+            </div>
+            <div>
+                <p>apellido</p>
+                <input type="text" id="inputEmail" class="inputVariable">
+            </div>
+            <div>
+                <p>Dirección</p>
+                <input type="text" id="inputTelefono" class="inputVariable">
+            </div>
+            <div>
+                <p>Perfil</p>
+                <select name="name" class="inputVariable"><option value="2"></option><option value="1">Admin</option><option value="0">Básico</option></select>
+            </div>
+            <div>
+                <input type="button" value="Cancelar" id="cancelarCreacion" class="botonPop">
+                <input type="button" value="Confirmar edicion" id="edicion" class="botonPop">
+            </div>
+            
+        </div>
+    </div>
+
+
+    <div id="popAdvertencias" class="displayNone">
+        <div>
+            <p class="letraInputs"></p>
+            <input type="button" value="OK" class="letraInputs">
+        </div>
+    </div>
 
 
     <script src="./usuarios.js"></script>

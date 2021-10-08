@@ -1,0 +1,58 @@
+.popCrear{ 
+    display: flex;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.75);
+
+    font-size: 1vw;
+
+    .contCrear{ 
+        background-color: #FFFFFF;
+        width: 30vw;
+        height: fit-content;
+        display: flex;
+        flex-direction: column; 
+        justify-content: space-evenly;
+
+        border: 0.2961vw solid #0683F9;
+
+
+        div{
+            display: flex;
+            justify-content: space-evenly;
+
+            padding: 3vw 2vw 0;
+
+            p{
+                width: 10vw;
+            }
+            .inputVariable{
+                padding-left: 1vw;
+                font-family: $letra;
+                font-weight: 100; 
+                font-size: 1vw;
+                width: 15vw;
+                height: 2.5vw;
+                option{
+                    font-weight: 100; 
+                }
+            }
+            .botonPop{
+                padding: 0.7vw;
+                width: 10vw;
+                font-size: 1vw;
+                align-self: center;
+                margin: 1vw 0 1vw;
+                background-color: #0683F9;
+                border: 0;
+                color: #FFFFFF;
+            }
+        }
+        
+       
+    }
+}

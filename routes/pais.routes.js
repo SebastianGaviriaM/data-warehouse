@@ -7,6 +7,11 @@ router.route('/')
         const result = await Pais.obtenerTodos();
         res.json(result)
     })
+    .post(async(req, res)=>{
+        const {nombrePais, region} = req.body;
+        const result = await Pais.crear(nombrePais, region);
+        res.json(result);
+    })
 
 
 router.route('/nombreRegion')

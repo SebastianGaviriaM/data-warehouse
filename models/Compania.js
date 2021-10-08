@@ -24,7 +24,7 @@ Compania.obtenerBusqueda = async(palabra) =>{
 }
 
 
-Compania.crear = async(nombreCompania, telefono, email, direccion, Compania) =>{
+Compania.crear = async(nombreCompania, telefono, email, direccion, ciudad) =>{
     try {
         
         const resultado = await sequelize.query('INSERT INTO companias (nombreCompania, telefono, email, direccion, ciudad) VALUES (?, ?, ? ,? ,?)', {replacements:[nombreCompania, telefono, email, direccion, ciudad]});
@@ -61,6 +61,17 @@ Compania.traerNombres = async() =>{
     try {
         
         const resultado = await sequelize.query('SELECT nombreCompania, id FROM companias', {type: sequelize.QueryTypes.SELECT});
+        return resultado;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+Compania.paginaCompanias = async() =>{
+    try {
+        
+        const resultado = await sequelize.query('SELECT companias.*, nombreCiudad FROM companias INNER JOIN ciudades ON companias.ciudad = ciudades.id;', {type: sequelize.QueryTypes.SELECT});
         return resultado;
 
     } catch (error) {

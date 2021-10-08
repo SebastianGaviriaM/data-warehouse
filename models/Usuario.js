@@ -4,8 +4,9 @@ let Usuario = {};
 
 Usuario.obtenerTodos = async() =>{
     try {
-        const resultado = await sequelize.query('SELECT id, nombre, apellido, email, FROM usuario', {type: sequelize.QueryTypes.SELECT});
+        const resultado = await sequelize.query('SELECT id, nombre, apellido, email, admin FROM usuarios', {type: sequelize.QueryTypes.SELECT});
         return resultado;
+        
         
     } catch (error) {
         console.log(error);
@@ -13,10 +14,10 @@ Usuario.obtenerTodos = async() =>{
     
 };
 
-Usuario.crear = async(nombre, apellido, email, passwordhash) => {
+Usuario.crear = async(nombre, apellido, email, passwordhash, admin) => {
     try {
-        const result = await sequelize.query('INSERT INTO usuarios (nombre, apellido, email, contrasena, admin) VALUES (?, ?, ?, ?, true);', {
-            replacements: [nombre, apellido, email, passwordhash]
+        const result = await sequelize.query('INSERT INTO usuarios (nombre, apellido, email, contrasena, admin) VALUES (?, ?, ?, ?, ?);', {
+            replacements: [nombre, apellido, email, passwordhash, admin]
         });
         return result;
         

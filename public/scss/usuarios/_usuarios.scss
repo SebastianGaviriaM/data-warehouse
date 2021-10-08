@@ -1,0 +1,146 @@
+.registro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-weight: 100;
+
+    list-style: none;
+    margin: 4vw 35vw 0;
+    padding: 3vw 0 2vw;
+    border:0.03vw solid black;
+
+    div{
+        display: flex;
+        flex-direction: column;
+        padding: 2vw 1vw;
+        width: 100%;
+        
+        div{
+            display: flex;
+            flex-direction: row;
+            padding: 1vw;
+
+            justify-content: space-between;
+            h4{
+                font-family: $letra;
+                font-weight: 100; 
+                font-size: 1vw;
+            }
+            input{
+                padding-left: 1vw;
+                font-family: $letra;
+                font-weight: 100; 
+                font-size: 1vw;
+                width: 15vw;
+                height: 2vw;
+
+            }
+            select{
+                padding-left: 1vw;
+                font-family: $letra;
+                font-weight: 100; 
+                font-size: 1vw;
+                width: 15vw;
+                height: 2vw;
+                option{
+                    font-weight: 100; 
+                }
+
+
+            }
+        }
+    }
+
+    #crearUsuario{
+        padding: 0.5vw;
+        margin: 0 2vw 0;
+        width: 10vw;
+        background-color: #0683F9;
+        border:none;
+        color: white;
+        font-size: 1vw;
+        align-self: flex-end;
+    }
+}
+
+
+.princUsuarios{
+    display: flex;
+    flex-direction: column;
+    margin: 8vw 20vw 5vw;
+    
+    font-weight: 300;
+    font-size: 1vw;
+
+    border: 0.03vw solid black;
+    .division{
+        display: flex;
+        justify-content: space-around;
+
+        padding: 1vw 0 1vw;
+
+        p{
+            width: 10vw;
+            height: 3vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        h4{
+            width: 10vw;
+            display: flex;
+            justify-content: center;
+        }
+        .emailUsuario{
+            width: 6vw;
+        }
+        .accionesUsuario{
+            width: 7vw;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            img{
+                width:1.5vw;
+                height:1.5vw;
+                display: none;
+            }
+            img:first-child{
+                display: block;
+            }
+        }
+        .perfilUsuario{
+            width: 7vw;
+        }
+
+    }
+    .usuarioInd{
+        &:hover{
+            background-color: #E8E8E8;
+            .accionesUsuario{
+                img{
+                    width:1.5vw;
+                    height:1.5vw;
+                    display: block;
+                }
+                img:first-child{
+                    display: none;
+                }
+            }
+        }
+    }
+    
+    .titCompanias{
+        border-bottom: 0.03vw solid black;
+        padding: 2vw 0 2vw;
+    }
+}
+
+.agregarCompanias{
+    margin-top: 1vw;
+    border: none;
+    background-color: #0683F9;
+    color: white;
+}

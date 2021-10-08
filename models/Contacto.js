@@ -70,10 +70,10 @@ Contacto.crear = async(nombreContacto, apellido, email, compania, cargo, interes
 }
 
 
-Contacto.actualizar = async(id, nombreContacto, apellido, email, telefono, compania, cargo, canal_preferido, interes) =>{
+Contacto.actualizar = async(nombreContacto, apellido, email, compania, cargo, interes, ciudad, id) =>{
     try {
         
-        const resultado = await sequelize.query('UPDATE Contactos SET (nombreContacto=?, apellido=?, email=?, telefono=?, compania=?, cargo=?, canal_preferido=?, interes=?) VALUES (?, ?, ? ,? ,?, ?, ?, ?) WHERE id=?', {replacements:[nombreContacto, apellido, email, telefono, compania, cargo, canal_preferido, interes, id]});
+        const resultado = await sequelize.query('UPDATE Contactos SET nombreContacto=?, apellido=?, email=?, compania=?, cargo=?, interes=?, ciudad=? WHERE id=?', {replacements:[nombreContacto, apellido, email, compania, cargo, interes, ciudad, id]});
         return resultado;
 
     } catch (error) {
