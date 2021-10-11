@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const Usuario = require('../models/Usuario');
 
 router.route('/')
-    .get(async(req, res)=>{         //Middleware solo admin
+    .get(async(req, res)=>{      
         const result = await Usuario.obtenerTodos();
         res.json(result)
     })
@@ -27,6 +27,18 @@ router.route('/')
             respuesta: "Usuario eliminado"
         });
     });
+
+router.route('/inicio')
+    .get(async(req, res)=>{      
+        const result = await Usuario.obtenerCantidad();
+        res.json(result)
+    })
+    .post(async(req, res)=>{
+        const {nombre, apellido, email, contrasena, admin} = req.body;
+        const passwordhash = bcrypt.hashSync(contrasena, parseInt(process.env.bcrypttmes));
+        const resultado = Usuario.crear(nombre, apellido, email, passwordhash, admin);
+        res.json(resultado);
+    })
 
 
 

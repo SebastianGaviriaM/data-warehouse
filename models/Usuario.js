@@ -14,6 +14,20 @@ Usuario.obtenerTodos = async() =>{
     
 };
 
+Usuario.obtenerCantidad = async() =>{
+    try {
+        const resultado = await sequelize.query('SELECT nombre FROM usuarios', {type: sequelize.QueryTypes.SELECT});
+        return resultado;
+        
+        
+    } catch (error) {
+        console.log(error);
+    }
+    
+};
+
+
+
 Usuario.crear = async(nombre, apellido, email, passwordhash, admin) => {
     try {
         const result = await sequelize.query('INSERT INTO usuarios (nombre, apellido, email, contrasena, admin) VALUES (?, ?, ?, ?, ?);', {

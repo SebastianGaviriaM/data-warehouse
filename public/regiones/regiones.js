@@ -1,6 +1,7 @@
 //Verificar Token de sesión
 
 
+
 const token = localStorage.getItem('token');
 
 if(!token){
@@ -45,6 +46,53 @@ let tipoDeObjeto;
 let accion;
 
 
+
+let paginaUsuarios = document.getElementById('paginaUsuarios');
+
+
+
+
+//Verificar admin
+
+
+const tipoUsuario = async()=>{
+    try {
+        const respuesta = await fetch('/token', {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+
+
+
+
+const verificarUsuario = async() =>{
+
+    let usuario = await tipoUsuario()
+
+
+    console.log(usuario);
+
+    if(!usuario.admin){
+        paginaUsuarios.classList.add('displayNone');
+        paginaUsuarios.classList.remove('apartadoMenu');
+    }
+    else{
+        console.log("Si es");
+    }
+
+}
+
+
+
+verificarUsuario();
 
 
 
@@ -197,6 +245,57 @@ const borrarCiudad = async(idSelect)=>{
     }  
 }
 
+const putRegion = async(id)=>{
+    try {
+        const respuesta = await fetch(`/regiones?id=${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                nombreRegion: inputCreacion.value
+            })
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+const putPais = async(id)=>{
+    try {
+        const respuesta = await fetch(`/paises?id=${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                nombrePais: inputCreacion.value
+            })
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+const putCiudad = async(id)=>{
+    try {
+        const respuesta = await fetch(`/ciudades?id=${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                nombreCiudad: inputCreacion.value
+            })
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
 
 
 
@@ -215,6 +314,8 @@ const colocarRegiones = async() =>{
         popCreacion.classList.toggle('displayNone');
         tituloCreacion.innerHTML = "Nombre de la nueva Región";
         tipoDeObjeto = "region";
+        accion = "crear";
+        popCreacion.firstElementChild.lastElementChild.lastElementChild.value = "Crear";
     });                                                           //Anadir nueva region     
 
     let regionesAImprimir =  await obtenerRegiones();
@@ -232,6 +333,8 @@ const colocarRegiones = async() =>{
             tituloCreacion.innerHTML = "Nombre del nuevo Pais";
             tipoDeObjeto = "pais";
             idReferenciaPadre = elementRegion.id;
+            accion = "crear";
+            popCreacion.firstElementChild.lastElementChild.lastElementChild.value = "Crear";
         })
 
 
@@ -248,17 +351,20 @@ const colocarRegiones = async() =>{
             idActual = e.target.alt;
             tipoDeObjeto = "region";
             
-
-            
+   
             e.stopPropagation();
         });
 
         regionActual.firstElementChild.lastElementChild.firstElementChild.addEventListener('click', (e)=>{       // Editar Region
-            console.log(elementRegion.id+1); 
-
+            
             idActual = e.target.alt;
             tipoDeObjeto = "region";
+            accion = "actualizar";
 
+            popCreacion.classList.toggle('popCrear');
+            popCreacion.classList.toggle('displayNone');
+            popCreacion.firstElementChild.lastElementChild.lastElementChild.value = "Actualizar";
+            tituloCreacion.innerHTML = "Nombre región";
             e.stopPropagation();
         });
         
@@ -280,7 +386,7 @@ const colocarRegiones = async() =>{
                 tipoDeObjeto = "ciudad";
                 idReferenciaPadre = elementPais.id;
                 accion = "crear";
-                popCreacion.firstElementChild.lastElementChild.lastElementChild.value = "Crear esa monda";
+                popCreacion.firstElementChild.lastElementChild.lastElementChild.value = "Crear";
             })
 
 
@@ -302,10 +408,15 @@ const colocarRegiones = async() =>{
             });
 
             paisActual.firstElementChild.lastElementChild.firstElementChild.addEventListener('click', (e)=>{    //Editar Pais
-                console.log("editar" + elementPais.id);
-
                 idActual = e.target.alt;
                 tipoDeObjeto = "pais";
+                accion = "actualizar";
+
+                popCreacion.classList.toggle('popCrear');
+                popCreacion.classList.toggle('displayNone');
+                popCreacion.firstElementChild.lastElementChild.lastElementChild.value = "Actualizar";
+                tituloCreacion.innerHTML = "Nombre Pais";
+
                 e.stopPropagation();
             });
 
@@ -332,9 +443,16 @@ const colocarRegiones = async() =>{
                     e.stopPropagation();
                 });
 
-                ciudadActual.lastElementChild.firstElementChild.addEventListener('click', ()=>{      //editar ciudad
+                ciudadActual.lastElementChild.firstElementChild.addEventListener('click', (e)=>{      //editar ciudad
                     idActual = e.target.alt;
-                    tipoDeObjeto = "pais";
+                    tipoDeObjeto = "ciudad"; 
+                    accion = "actualizar";
+
+                    popCreacion.classList.toggle('popCrear');
+                    popCreacion.classList.toggle('displayNone');
+                    popCreacion.firstElementChild.lastElementChild.lastElementChild.value = "Actualizar";
+                    tituloCreacion.innerHTML = "Nombre ciudad";
+                    e.stopPropagation();
                 });
 
                 paisActual.lastElementChild.appendChild(ciudadActual);
@@ -412,18 +530,35 @@ crearNuevo.addEventListener('click', ()=>{
         advertenciasCrear("Debes ingresar un nombre");
     }
     else{
-        if(tipoDeObjeto=="region"){
-            crearRegion(inputCreacion.value);
-            location.reload();
+        if(accion=="crear"){
+            if(tipoDeObjeto=="region"){
+                crearRegion(inputCreacion.value);
+                location.reload();
+            }
+            else if(tipoDeObjeto=="pais"){
+                crearPais(inputCreacion.value, idReferenciaPadre);
+                location.reload();
+            }
+            else if(tipoDeObjeto=="ciudad"){
+                crearCiudad(inputCreacion.value, idReferenciaPadre);
+                location.reload();
+            }
         }
-        else if(tipoDeObjeto=="pais"){
-            crearPais(inputCreacion.value, idReferenciaPadre);
-            location.reload();
+        else{
+            if(tipoDeObjeto=="region"){
+                putRegion(idActual);
+                location.reload();
+            }
+            else if(tipoDeObjeto=="pais"){
+                putPais(idActual);
+                location.reload();
+            }
+            else if(tipoDeObjeto=="ciudad"){
+                putCiudad(idActual);
+                location.reload();
+            }
         }
-        else if(tipoDeObjeto=="ciudad"){
-            crearCiudad(inputCreacion.value, idReferenciaPadre);
-            location.reload();
-        }
+        
     }
 });
 

@@ -1,3 +1,4 @@
+
 try {
     const token = localStorage.getItem('token');
 
@@ -7,6 +8,18 @@ try {
 } catch (error) {
     console.log("Token expiró");
 }
+
+
+
+let ok = popAdvertencias.firstElementChild.lastElementChild;
+ok.addEventListener('click', ()=>{popAdvertencias.classList.add('displayNone');popAdvertencias.classList.remove('popAdvertencias');});
+
+function advertenciasCrear(mensaje) {
+    popAdvertencias.classList.remove('displayNone');
+    popAdvertencias.classList.add('popAdvertencias');
+    popAdvertencias.firstElementChild.firstElementChild.innerHTML = mensaje;  
+}
+
 
 
 let email = document.getElementById('email');
@@ -30,10 +43,80 @@ const enviarLogin = async()=>{
         localStorage.setItem('token', json);
         location.href = "../main/main.html";
     }else{
-        console.log("error, no se puede pasar ");
+        advertenciasCrear("Usuario y/o contraseña inválidas, intente de nuevo")
     }
     
 }
+
+
+
+
+
+
+
+const obtenerUsuarios = async() =>{
+    try{
+        const respuesta = await fetch('/usuarios/inicio', {
+            method: 'GET'
+        });
+        const json = await respuesta.json();
+        return json;
+
+    }catch(error){
+        console.log(error);
+    }
+}
+
+const primerContactoAdmin = async()=>{
+    try {
+        const respuesta = await fetch('/usuarios/inicio', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                nombre: "admin1", 
+                apellido: "admin1", 
+                email: "admin1", 
+                contrasena: "admin1", 
+                admin: "1"
+            })
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+
+const primerContactoNoAdmin = async()=>{
+    try {
+        const respuesta = await fetch('/usuarios/inicio', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                nombre: "noAdmin", 
+                apellido: "noAdmin", 
+                email: "noAdmin", 
+                contrasena: "noAdmin", 
+                admin: "0"
+            })
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+
+
+
+
+
+
+
 
 
 ingresar.addEventListener('click', enviarLogin);
@@ -43,3 +126,24 @@ password.addEventListener('keyup', (e)=>{
         enviarLogin(); 
     }
 })
+
+
+
+//Crear nuevos usuarios
+
+
+
+const usuariosAuxiliares = async()=>{
+    let usuariosActuales = await obtenerUsuarios();
+
+    if(usuariosActuales.length==0){
+        primerContactoAdmin();
+        primerContactoNoAdmin();
+    }
+    
+} 
+
+
+usuariosAuxiliares();
+
+

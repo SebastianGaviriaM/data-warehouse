@@ -44,7 +44,7 @@ Region.crear = async(nombreRegion) => {
     }
 }
 
-Region.actualizar = async(id, nombreRegion) =>{
+Region.actualizar = async(nombreRegion, id) =>{
     try {
         const resultado = await sequelize.query('UPDATE regiones SET nombreRegion=? WHERE id=?', {replacements: [nombreRegion, id]});
         return resultado;

@@ -37,10 +37,10 @@ Pais.crear = async(nombrePais, region) => {
     }
 }
 
-Pais.actualizar = async(id, nombrePais, region) =>{
+Pais.actualizar = async(nombrePais, id) =>{
     try {
 
-        const resultado = await sequelize.query('UPDATE paises SET nombrePais=?, region=? WHERE id=?', {replacements: [nombrePais, region, id]});
+        const resultado = await sequelize.query('UPDATE paises SET nombrePais=? WHERE id=?', {replacements: [nombrePais, id]});
         return resultado;
     } catch (error) {
         console.log(error);

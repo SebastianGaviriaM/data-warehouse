@@ -14,7 +14,7 @@ router.route('/login')
             replacements: [email] 
         });
         if(result.length > 0 && bcrypt.compareSync(contrasena, result[0].contrasena)){
-            const token = jwt.sign({usuario:{id:result[0].id, nombre: result[0].nombre, email: result[0].email, admin: result[0].admin} }, process.env.jwtPass, { expiresIn: '1h' });
+            const token = jwt.sign({usuario:{id:result[0].id, nombre: result[0].nombre, email: result[0].email, admin: result[0].admin} }, process.env.jwtPass);
             res.json(token);
         }else{
             res.status(401).json("Usuario y/o contrasena invalidos");

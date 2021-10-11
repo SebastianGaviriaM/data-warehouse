@@ -23,6 +23,17 @@ router.route('/')
         const result = await Compania.crear(nombreCompania, telefono, email, direccion, ciudad);
         res.json(result);
     }) 
+    .put(async(req, res)=>{
+        const {nombreCompania, email, telefono, direccion, ciudad} = req.body;
+        const id = req.query.id;
+        const result = Compania.actualizar(nombreCompania, email, telefono, direccion, ciudad, id);
+        res.json(result);
+    })
+    .delete((req, res)=>{
+        const id = req.query.id;
+        const result = Compania.borrar(id);
+        res.json(result);
+    })
 
 
 module.exports = router; 

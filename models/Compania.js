@@ -35,10 +35,10 @@ Compania.crear = async(nombreCompania, telefono, email, direccion, ciudad) =>{
     }
 }
 
-Compania.actualizar = async(id, nombreCompania, telefono, email, direccion, ciudad) =>{
+Compania.actualizar = async(nombreCompania, email, telefono, direccion, ciudad, id) =>{
     try {
         
-        const resultado = await sequelize.query('UPDATE companias SET (nombreCompania=?, telefono=?, email=?, direccion=?, ciudad=?) VALUES (?, ?, ? ,? ,?) WHERE id=?', {replacements:[nombreCompania, telefono, email, direccion, ciudad, id]});
+        const resultado = await sequelize.query('UPDATE companias SET nombreCompania=?, email=?, telefono=?, direccion=?, ciudad=? WHERE id=?', {replacements:[nombreCompania, email, telefono, direccion, ciudad, id]});
         return resultado;
 
     } catch (error) {
@@ -71,7 +71,7 @@ Compania.traerNombres = async() =>{
 Compania.paginaCompanias = async() =>{
     try {
         
-        const resultado = await sequelize.query('SELECT companias.*, nombreCiudad FROM companias INNER JOIN ciudades ON companias.ciudad = ciudades.id;', {type: sequelize.QueryTypes.SELECT});
+        const resultado = await sequelize.query('SELECT companias.*, ciudades.nombreCiudad FROM companias INNER JOIN ciudades ON companias.ciudad = ciudades.id;', {type: sequelize.QueryTypes.SELECT});
         return resultado;
 
     } catch (error) {

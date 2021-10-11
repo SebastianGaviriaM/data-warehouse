@@ -57,7 +57,7 @@
   display: flex;
 }
 
-.header nav ul li {
+.header nav ul .apartadoMenu {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -67,7 +67,7 @@
           align-items: center;
 }
 
-.header nav ul li a {
+.header nav ul .apartadoMenu a {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -77,7 +77,7 @@
   color: white;
 }
 
-.header nav ul li input {
+.header nav ul .apartadoMenu input {
   width: 3vw;
   height: 1.5vw;
   border: none;

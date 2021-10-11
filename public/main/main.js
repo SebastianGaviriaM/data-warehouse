@@ -1,11 +1,14 @@
 //Verificar Token de sesión
 
 
+
 const token = localStorage.getItem('token');
 
 if(!token){
     location.href = '../index.html';
 }
+
+
 
 //Logout
 
@@ -25,9 +28,16 @@ logout.addEventListener('click', ()=>{
 
 
 
+
+
+
+
 ///////////////
 // Variables //
 ///////////////
+
+
+
 
 let contContactos = document.getElementById('contactos');
 let selectTodos = document.getElementById('selectTodos');
@@ -77,7 +87,52 @@ let tipoDeAccion;
 let contactoActual;
 let idTurno;
 
+let paginaUsuarios = document.getElementById('paginaUsuarios');
 
+
+
+
+//Verificar admin
+
+
+const tipoUsuario = async()=>{
+    try {
+        const respuesta = await fetch('/token', {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+
+
+
+
+const verificarUsuario = async() =>{
+
+    let usuario = await tipoUsuario()
+
+
+    console.log(usuario);
+
+    if(!usuario.admin){
+        paginaUsuarios.classList.add('displayNone');
+        paginaUsuarios.classList.remove('apartadoMenu');
+    }
+    else{
+        console.log("Si es");
+    }
+
+}
+
+
+
+verificarUsuario();
 
 
 

@@ -42,6 +42,11 @@ let popCreacion = document.getElementById('popCreacion');
 let cancelarCreacion = document.getElementById('cancelarCreacion');
 let edicion = document.getElementById('edicion');
 
+let popConfirmaciones = document.getElementById('popConfirmaciones');
+let cancelarEliminacion = popConfirmaciones.firstElementChild.lastElementChild.firstElementChild;
+let eliminar = popConfirmaciones.firstElementChild.lastElementChild.lastElementChild;
+
+
 let inputNombrePop = document.getElementById('inputNombrePop');
 let inputApellidoPop = document.getElementById('inputApellidoPop');
 let inputEmailPop = document.getElementById('inputEmailPop');
@@ -119,6 +124,21 @@ const putUsuario = async(id)=>{
     }  
 }
 
+const borrarUsuario = async(idSelect)=>{
+    try {
+        const respuesta = await fetch(`/usuarios?id=${idSelect}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        });
+        const json = await respuesta.json();
+        return json;
+    } catch (error) {
+        console.log(error);
+    }  
+}
+
 
 
 
@@ -153,6 +173,15 @@ const colocarUsuarios = async() => {
     for (let index = 1; index < contUsuarios.children.length; index++) {
         const element = contUsuarios.children[index];
         let btnEditar = element.lastElementChild.children[1];
+
+
+        element.lastElementChild.children[2].addEventListener('click', (e)=>{
+            popConfirmaciones.classList.toggle('displayNone');
+            popConfirmaciones.classList.toggle('popConfirmaciones');
+            popConfirmaciones.firstElementChild.firstElementChild.innerHTML = "¿Estás seguro de que quieres eliminar este usuario?";
+
+            idTurno = e.target.alt;
+        });
 
         btnEditar.addEventListener('click',()=>{
             popCreacion.classList.add('popCrear');
@@ -238,5 +267,32 @@ edicion.addEventListener('click', ()=>{
         putUsuario(idTurno);
 
         location.reload();
+    }
+});
+
+
+// Pop eliminar
+
+
+cancelarEliminacion.addEventListener('click', ()=>{
+    popConfirmaciones.classList.toggle('displayNone');
+    popConfirmaciones.classList.toggle('popConfirmaciones');
+});
+
+
+
+
+eliminar.addEventListener('click', async(e)=>{
+    let admins = []
+    totalUsuarios = await obtenerUsuarios();
+    console.log(totalUsuarios);
+    totalUsuarios.forEach(element => {if(element.admin){admins.push(element)}});
+
+    if (admins.length==1){
+        advertenciasCrear("No puedes eliminarlo, pues es el último usuario administrador que queda");
+    }
+    else{
+        borrarUsuario(idTurno);
+        location.href = '../index.html';
     }
 });

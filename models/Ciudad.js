@@ -38,10 +38,10 @@ Ciudad.crear = async(nombreCiudad, pais) => {
     }
 }
 
-Ciudad.actualizar = async(id, nombreCiudad, pais) =>{
+Ciudad.actualizar = async(nombreCiudad, id) =>{
     try {
 
-        const resultado = await sequelize.query('UPDATE ciudades SET nombreCiudad=?, pais=? WHERE id=?', {replacements: [nombreCiudad, pais, id]});
+        const resultado = await sequelize.query('UPDATE ciudades SET nombreCiudad=? WHERE id=?', {replacements: [nombreCiudad, id]});
         return resultado;
     } catch (error) {
         console.log(error);
