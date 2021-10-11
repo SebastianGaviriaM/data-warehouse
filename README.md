@@ -31,7 +31,7 @@ nodemon server.js
 
 Recuerde:
 
-Los valores de las preferencias de los canales solamente serán: 'Sin preferencia', 'Canal favorito', 'No molestar'. Esto está limitado por el programa
+Los valores de las preferencias de los canales solamente serán: 'Sin preferencia', 'Canal favorito', 'No molestar'. Esto está limitado por el programa.
 Borrar una región significará borrar los países asociados.
 Borrar un país significará borrar las ciudades asociadas.
 Borrar una ciudad significará borrar las companias y lo contactos asociados a esta.
