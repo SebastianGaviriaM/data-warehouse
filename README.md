@@ -9,16 +9,20 @@ Procedimiento :
 Clonar proyecto desde la consola :
 git clone https://github.com/SebastianGaviriaM/data-warehouse.git
 
-2 - Instalación de dependencias
+2 - Instalación de dependencias:
+
 npm install
 
-3 - Crear base de datos
+3 - Crear base de datos:
+
 Pegar el contenido del archivo data_warehouse.txt en el terminal del administrador de bases de datos. Recuerde que se utiliza una base de datos mysql.
 
-4 - Datos de entorno
+4 - Datos de entorno:
+
 Editar el archivo .env con los datos de su entorno.
 
-5 - Iniciar el servidor
+5 - Iniciar el servidor:
+
 Abrir el archivo server.js desde VisualStudio y ejecutar en terminal :
 nodemon server.js
 
