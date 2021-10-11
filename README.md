@@ -24,9 +24,11 @@ Editar el archivo .env con los datos de su entorno.
 5 - Iniciar el servidor:
 
 Abrir el archivo server.js desde VisualStudio y ejecutar en terminal :
-nodemon server.js
+nodemon server.js.
 
-6 - Ya puedes Utilizar el Sistema
+6 - Ya puedes Utilizar el Sistema.
+
+
 
 
 Recuerde:
