@@ -1,0 +1,94 @@
+
+
+CREATE DATABASE data_warehouse;
+USE data_warehouse;
+
+
+CREATE TABLE regiones (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nombreRegion VARCHAR(255)  NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE paises (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nombrePais VARCHAR(255) NOT NULL,
+  region INT(11) NOT NULL,
+  PRIMARY KEY (id), 
+  FOREIGN KEY (region) REFERENCES regiones(id) ON DELETE CASCADE
+);
+
+CREATE TABLE ciudades (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nombreCiudad VARCHAR(255)  NOT NULL,
+  pais INT(11) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (pais) REFERENCES paises(id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE usuarios (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(255) NOT NULL,
+  apellido VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  contrasena VARCHAR(255) NOT NULL,
+  admin BOOLEAN NOT NULL,	
+  PRIMARY KEY (id)
+);
+
+
+
+CREATE TABLE companias (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nombreCompania VARCHAR(255) NOT NULL,
+  telefono VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  direccion VARCHAR(255) NOT NULL,
+  ciudad INT(11) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (ciudad) REFERENCES ciudades(id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE contactos (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nombreContacto VARCHAR(255) NOT NULL,
+  apellido VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  compania INT(11) NOT NULL,
+  cargo VARCHAR(255) NOT NULL,
+  interes int(11) NOT NULL,
+  ciudad int(11) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (ciudad) REFERENCES ciudades(id) ON DELETE CASCADE,
+  FOREIGN KEY (compania) REFERENCES companias(id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE canales (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nombreCanal VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+
+
+CREATE TABLE canalescontactos(
+  id int(11) NOT NULL AUTO_INCREMENT, 
+  contacto_id int(11) NOT NULL,
+  canal_id int(11) NOT NULL,
+  preferencia ENUM('Sin preferencia', 'Canal favorito', 'No molestar'),
+  cuenta VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (contacto_id) REFERENCES contactos(id) ON DELETE CASCADE,
+  FOREIGN KEY (canal_id) REFERENCES canales(id) ON DELETE CASCADE
+);
+
+
+INSERT INTO canales (nombreCanal) VALUES ('WhatsApp');
+INSERT INTO canales (nombreCanal) VALUES ('Facebook');
+INSERT INTO canales (nombreCanal) VALUES ('Email');
+INSERT INTO canales (nombreCanal) VALUES ('Telefono');
+
+
