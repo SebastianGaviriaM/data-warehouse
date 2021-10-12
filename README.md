@@ -42,8 +42,17 @@ Borrar una compañia significará borrar los contactos asociados.
 
 Para hacer el primer inicio de sesión se registrará automáticamente un usuario administrador y uno básico.
 
+
+Usuario administrador: admin1, contraseña: admin1.
+
+
+Usuario básico: noAdmin, contraseña: noAdmin.
+
+
+
 Se entregará la base de datos vacía, para llenarla conforme se realice la checklist.
 
 La plataforma cuenta con un nivel de detalle medio, recuerde leer con ciudado todas las advertencias que salten.
 
 
+El modelo que se escogió es el modelo freelance, a pesar de que alguno diseños de apoyen en los suministrados.
